@@ -1,0 +1,13 @@
+
+OLED_DRIVER_ENABLE = yes
+ENCODER_ENABLE = yes
+CONSOLE_ENABLE = yes
+RGBLIGHT_ENABLE = yes
+
+
+# Purely a space saving initiative. 
+LTO_ENABLE = yes
+MOUSEKEY_ENABLE = no
+EXTRAKEY_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no 
