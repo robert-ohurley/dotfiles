@@ -1,0 +1,105 @@
+{
+    "editor.formatOnSave": false,
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "Default Dark+",
+    "terminal.external.windowsExec": "C:\\Program Files\\Git\\usr\\bin\\bash.exe",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "vim.statusBarColors.visual": "",
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive" : [
+        //NAVIGATION
+        //splits
+        { "before": [ "leader", "v" ], "commands": [ ":vsplit" ] },
+        { "before": [ "leader", "s" ], "commands": [ ":split" ] },
+        //switch between buffers
+        { "before": [ "<S-h>" ], "commands": [ ":bprevious" ] },
+        { "before": [ "<S-l>" ], "commands": [ ":bnext" ] },
+        // panes
+        { "before": ["leader", "h"], "commands": ["workbench.action.focusLeftGroup"] },
+        { "before": ["leader", "j"], "commands": ["workbench.action.focusBelowGroup"] },
+        { "before": ["leader", "k"], "commands": ["workbench.action.focusAboveGroup"] }, 
+        { "before": ["leader", "l"], "commands": ["workbench.action.focusRightGroup"] },
+        
+        //EDITING
+        //start and end of lines
+        { "before": [ "d", "s" ], "after": [ "d", "^"] },
+        { "before": [ "d", "e" ], "after": [ "d", "g", "_"] },
+        { "before": [ "<Leader>", "s" ], "after": [ "^"] },
+        { "before": [ "<Leader>", "e" ], "after": [ "g", "_"] },
+
+        //new lines
+        { "before": [ "<Leader>", "o" ], "after": [ "o", "<Esc>" ]},
+        { "before": [ "<Leader>", "O" ], "after": [ "O", "<Esc>" ]},
+
+        //comments
+        { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] },
+
+        //ide shortcuts
+        { "before": ["leader", "w"], "commands": ["workbench.action.files.save"] },
+        { "before": ["leader", "q"], "commands": ["workbench.action.closeActiveEditor"] },
+        { "before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
+        { "before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
+        { "before": ["g", "h"], "commands": ["editor.action.showDefinitionPreviewHover"]}, 
+        { "before": ["J"], "after": ["5", "j"]},
+        { "before": ["K"], "after": ["5", "k"]}
+
+    ],
+    "vim.insertModeKeyBindings": [
+        { "before": [ "j", "k" ], "after": [ "<Esc>" ] }
+    ],
+    "vim.visualModeKeyBindings": [
+        // Stay in visual mode while indenting
+        { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+        { "before": [">"], "commands": ["editor.action.indentLines"] },
+
+        // Move selected lines while staying in visual mode
+        { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+        { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+
+        // toggle comment selection
+        { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] },
+
+        // bomb ass remap
+        { "before": ["leader", "p"], "after": ["\"", "_", "d", "P"] }
+
+    ],
+    "vim.commandLineModeKeyBindings": [
+
+    
+    ],
+    "vim.useSystemClipboard": true,
+    "vva.trustedDomain": true,
+    "vim.hlsearch": true,
+    "vim.handleKeys": {
+
+
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingOvertype": "always",
+    "editor.renderWhitespace": "none",
+    "editor.renderControlCharacters": false,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "editor.foldingHighlight": false,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "html.format.enable": false,
+    "html.format.contentUnformatted": "",
+    "editor.lineNumbers": "relative",
+    "vim.digraphs": {},
+    "editor.acceptSuggestionOnCommitCharacter":false,
+    "editor.acceptSuggestionOnEnter": "on",
+    "vim.commandLineModeKeyBindingsNonRecursive": [
+    
+    ],
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "git.openRepositoryInParentFolders": "never",
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    }
+}
