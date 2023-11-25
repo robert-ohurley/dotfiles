@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[user]
+	email = robert-hurley@hotmail.com.au
+	name = RojetSavage
+[credential]
+	helper = cache
