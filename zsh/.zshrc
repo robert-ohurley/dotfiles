@@ -105,7 +105,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #export PATH="~/Programming/scripts/:PATH"
 export PATH=/home/rojetsavage/Projects/scripts:$PATH
-
+export PATH=/home//root/.local/bin:$PATH
+export PATH=/home/rojetsavage/.pyenv/versions/3.12.0/bin:$PATH
 alias vim=nvim
 
 # Added by Amplify CLI binary installer
@@ -117,3 +118,6 @@ export PATH="$HOME/.amplify/bin:$PATH"
 precmd() {
 	source ~/.oh-my-zsh/custom/aliases.zsh
 }
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
