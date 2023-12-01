@@ -1,4 +1,5 @@
 #tmux
+rm -rf ~/.config/tmux
 ln -s -f ~/dotfiles/tmux ~/.config/
 
 #nvim
@@ -6,15 +7,16 @@ ln -s -f ~/dotfiles/tmux ~/.config/
 rm -rf ~/.config/nvim/after
 rm -rf ~/.config/nvim/core
 rm -rf ~/.config/nvim/lua
-
+S
 ln -s -f ~/dotfiles/nvim/after ~/.config/nvim/
 ln -s -f ~/dotfiles/nvim/core ~/.config/nvim/
 ln -s -f ~/dotfiles/nvim/lua ~/.config/nvim/
 
 #zsh
 ln -s -f ~/dotfiles/zsh/.zshrc ~/.zshrc
-ln -s -f ~/dotfiles/zsh/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
-
+rm -rf ~/.config/.oh-my-zsh/custom 
+ln -s -f ~/dotfiles/zsh/custom ~/.config/.oh-my-zsh/custom
+S
 #git
 ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
 
