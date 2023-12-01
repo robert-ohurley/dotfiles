@@ -1,1 +1,1 @@
-HISTFILE=$ZSH/custom/.zsh_history
+HISTFILE=$ZSH/.zsh_history
