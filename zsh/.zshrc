@@ -4,17 +4,16 @@ export ZSH="$HOME/.config/.oh-my-zsh"
 # Set theme
 ZSH_THEME="agnoster"
 
-HISTSIZE=1000
+HISTSIZE=0
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
 #Load plugins
-plugins=(
-	#git 			
-	zsh-autosuggestions		
+plugins=(	
 	sudo				
 	colorize 			
+	web-search
  )
 
 #Prevent creation of some of the ZSH_COMPDUMP files

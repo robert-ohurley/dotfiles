@@ -11,3 +11,4 @@ alias f='cd "$(find ~ ~/Uni ~/Projects ~/Programming -mindepth 1 -maxdepth 3 -ty
 alias c='clear'
 alias ls='ls -l'
 
+alias echoServer='node ~/Projects/echoServer/index.js'
