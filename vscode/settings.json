@@ -8,77 +8,106 @@
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "vim.statusBarColors.visual": "",
+    "vim.statusBarColors.visual": [
+        "#5f00af",
+        "#ffffff"
+    ],
+    "vim.useSystemClipboard":true,
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive" : [
         //NAVIGATION
         //splits
-        { "before": [ "leader", "v" ], "commands": [ ":vsplit" ] },
-        { "before": [ "leader", "s" ], "commands": [ ":split" ] },
-        //switch between buffers
-        { "before": [ "<S-h>" ], "commands": [ ":bprevious" ] },
-        { "before": [ "<S-l>" ], "commands": [ ":bnext" ] },
-        // panes
+        // { "before": [ "leader", "v" ], "commands": [ ":vsplit" ] },
+        // { "before": [ "leader", "s" ], "commands": [ ":split" ] },
+        
+        //Panes
+        { "before": [ "<S-h>" ], "commands": [ "workbench.action.previousEditor" ] },
+        { "before": [ "<S-l>" ], "commands": [ "workbench.action.nextEditor" ] },
         { "before": ["leader", "h"], "commands": ["workbench.action.focusLeftGroup"] },
         { "before": ["leader", "j"], "commands": ["workbench.action.focusBelowGroup"] },
         { "before": ["leader", "k"], "commands": ["workbench.action.focusAboveGroup"] }, 
-        { "before": ["leader", "l"], "commands": ["workbench.action.focusRightGroup"] },
+        { "before": ["leader", "l"], "commands": ["workbench.action.focusNextGroup"] },
+
+        //Changing between modes
+        { "before": [ "leader", "v" ], "after": [ "V" ] },
+
+        //Movement
+        { "before": [ "leader", "s" ], "after": [ "^"] },
+        { "before": [ "leader", "e" ], "after": ["$"] },
+        { "before": ["J"], "after": ["5", "j"]},
+        { "before": ["K"], "after": ["5", "k"]},
         
-        //EDITING
-        //start and end of lines
-        { "before": [ "d", "s" ], "after": [ "d", "^"] },
-        { "before": [ "d", "e" ], "after": [ "d", "g", "_"] },
-        { "before": [ "<Leader>", "s" ], "after": [ "^"] },
-        { "before": [ "<Leader>", "e" ], "after": [ "g", "_"] },
-
         //new lines
-        { "before": [ "<Leader>", "o" ], "after": [ "o", "<Esc>" ]},
-        { "before": [ "<Leader>", "O" ], "after": [ "O", "<Esc>" ]},
-
-        //comments
-        { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] },
+        { "before": [ "leader", "o" ], "after": [ "o", "<Esc>" ]},
+        { "before": [ "leader", "O" ], "after": [ "O", "<Esc>" ]},
 
         //ide shortcuts
+        { "before": ["leader", "c", "l"], "commands": ["editor.action.commentLine"] },
         { "before": ["leader", "w"], "commands": ["workbench.action.files.save"] },
         { "before": ["leader", "q"], "commands": ["workbench.action.closeActiveEditor"] },
         { "before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
-        { "before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
-        { "before": ["g", "h"], "commands": ["editor.action.showDefinitionPreviewHover"]}, 
-        { "before": ["J"], "after": ["5", "j"]},
-        { "before": ["K"], "after": ["5", "k"]}
+        // { "before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
 
+        //Go to declaration
+        { "before": ["g", "D"], "commands": ["editor.action.previewDeclaration"]}, 
+        { "before": ["g", "d"], "commands": ["editor.action.goToDeclaration"]}, 
+
+
+        { "before": ["leader", "p"], "after": ["\"", "_", "d", "P"] },
+          
+        //snippets
+        {
+            "before": ["leader", "e", "e"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.insertSnippet",
+                    "when": "editorTextFocus",
+                    "args": {
+                        "snippet": "if err != nil {\n\treturn $1\n}"
+                    }
+                },
+                "editor.action.formatDocument"
+            ]
+        }
     ],
-    "vim.insertModeKeyBindings": [
-        { "before": [ "j", "k" ], "after": [ "<Esc>" ] }
+    "vim.normalModeKeyBindings": [
+        { "before": ["leader", "c", "p"], "after": ["v","i","p","leader", "c", "l"] },
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        //Change modes
+        { "before": [ "j", "k" ], "after": [ "<Esc>", "l" ] },
+
+        //Golang
+        { "before": [ ":", ":" ], "after": [ ":", "=" ] }
     ],
     "vim.visualModeKeyBindings": [
         // Stay in visual mode while indenting
         { "before": ["<"], "commands": ["editor.action.outdentLines"] },
         { "before": [">"], "commands": ["editor.action.indentLines"] },
 
+        // Movement
+        { "before": ["J"], "after": ["3", "j"] },
+        { "before": ["K"], "after": ["3", "k"] },
+
         // Move selected lines while staying in visual mode
-        { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
-        { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+        { "before": ["<C-j>"], "commands": ["editor.action.moveLinesDownAction"] },
+        { "before": ["<C-k>"], "commands": ["editor.action.moveLinesUpAction"] },
+        
+        // Comments 
+        { "before": ["leader", "c", "l"], "commands": ["editor.action.commentLine"] },
 
-        // toggle comment selection
-        { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] },
-
-        // bomb ass remap
+        // Paste without overriding register 
         { "before": ["leader", "p"], "after": ["\"", "_", "d", "P"] }
 
     ],
     "vim.commandLineModeKeyBindings": [
-
-    
     ],
-    "vim.useSystemClipboard": true,
     "vva.trustedDomain": true,
     "vim.hlsearch": true,
     "vim.handleKeys": {
-
-
         "<C-d>": true,
-        "<C-s>": false,
+        "<C-s>": true,
         "<C-z>": false
     },
     "editor.autoClosingBrackets": "always",
@@ -101,5 +130,9 @@
     "git.openRepositoryInParentFolders": "never",
     "[c]": {
         "editor.defaultFormatter": "xaver.clang-format"
-    }
+    },
+    "go.formatTool": "gofmt",
+    "workbench.settings.applyToAllProfiles": [
+
+    ]
 }
