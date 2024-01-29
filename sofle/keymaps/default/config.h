@@ -6,7 +6,7 @@ for more options.
 */
 
 #define TAPPING_TERM 200 
-#define QUICK_TAP_TERM 0 
+// #define QUICK_TAP_TERM 0 
 //Add RGB underglow
 #define RGB_DI_PIN D3
 #define RGBLED_NUM 14

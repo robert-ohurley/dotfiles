@@ -7,7 +7,7 @@ ln -s -f ~/dotfiles/tmux ~/.config/
 rm -rf ~/.config/nvim/after
 rm -rf ~/.config/nvim/core
 rm -rf ~/.config/nvim/lua
-S
+
 ln -s -f ~/dotfiles/nvim/after ~/.config/nvim/
 ln -s -f ~/dotfiles/nvim/core ~/.config/nvim/
 ln -s -f ~/dotfiles/nvim/lua ~/.config/nvim/
@@ -22,5 +22,12 @@ ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
 
 #vscode
 ln -s -f ~/dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
+
+
+#sofle
+rm -rf ~/Keyboards/qmk_firmware/keyboards/sofle
+ln -s -f ~/dotfiles/sofle ~/Keyboards/qmk_firmware/keyboards/
+
+
 
 echo "Completed symlinking config files"
