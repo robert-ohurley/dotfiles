@@ -18,6 +18,3 @@ alias t='tmux attach'
 
 alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
-
-export XDG_CONFIG_HOME='~/.config'
-export ANDROID_HOME='/home/rojetsavage/Android/Sdk'
