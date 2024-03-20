@@ -11,4 +11,13 @@ alias f='cd "$(find ~ ~/Uni ~/Projects ~/Programming -mindepth 1 -maxdepth 3 -ty
 alias c='clear'
 alias ls='ls -l'
 
+#tmux
+alias tk='tmux kill-server'
+alias tl='tmux list-sessions'
+alias t='tmux attach'
+
 alias echoServer='node ~/Projects/echoServer/index.js'
+alias uu='sudo apt update && sudo apt upgrade'
+
+export XDG_CONFIG_HOME='~/.config'
+export ANDROID_HOME='/home/rojetsavage/Android/Sdk'
