@@ -5,3 +5,5 @@
 	name = RojetSavage
 [credential]
 	helper = cache
+[pull]
+	rebase = false
