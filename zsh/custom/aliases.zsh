@@ -17,7 +17,7 @@ alias uu='sudo apt update && sudo apt upgrade'
 alias tk='tmux kill-server'
 alias tl='tmux list-sessions'
 alias t='tmux attach'
-alias ts='tmux source-file ~/.config/tmux/tmux.conf'
+alias ts='tmux source-file ~/.config/tmux/tmux.conf'k
 
 
 
