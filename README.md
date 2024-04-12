@@ -6,4 +6,3 @@ Configuration files for
 - vscode
 - zsh
 
-*setup.sh provides all symlink commands*
