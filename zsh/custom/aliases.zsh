@@ -4,7 +4,7 @@ alias gupdate='git commit -m "update"'
 alias gl='git log --oneline --graph'
 alias gp='git push origin main'
 alias gs='git status'
-alias gsub='git submodule foreach git pull origin master'
+alias gsub='git submodule foreach git pull origin main'
 
 
 #navigation 
@@ -20,7 +20,7 @@ alias uu='sudo apt update && sudo apt upgrade'
 alias tk='tmux kill-server'
 alias tl='tmux list-sessions'
 alias t='tmux attach'
-alias ts='tmux source-file ~/.config/tmux/tmux.conf'k
+alias ts='tmux source-file ~/.config/tmux/tmux.conf'
 
 
 
