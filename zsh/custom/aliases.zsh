@@ -4,6 +4,7 @@ alias gupdate='git commit -m "update"'
 alias gl='git log --oneline --graph'
 alias gp='git push origin main'
 alias gs='git status'
+alias gsub='git submodule foreach git pull origin master'
 
 
 #navigation 
