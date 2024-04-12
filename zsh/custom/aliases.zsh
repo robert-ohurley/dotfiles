@@ -21,6 +21,6 @@ alias tl='tmux list-sessions'
 alias t='tmux attach'
 alias ts='tmux source-file ~/.config/tmux/tmux.conf'k
 
-
-
+#cleanup
+alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 
