@@ -22,6 +22,6 @@ alias tl='tmux list-sessions'
 alias t='tmux attach'
 alias ts='tmux source-file ~/.config/tmux/tmux.conf'
 
-#cleanup
-alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
-
+#prevent generation of dotfiles in $HOME - tidy up
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" # Alias wget to use a custom hsts cache file location
+alias nvidia-settings=nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
