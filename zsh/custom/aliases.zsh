@@ -3,6 +3,7 @@ alias ga='git add .'
 alias gupdate='git commit -m "update"'
 alias gl='git log --oneline --graph'
 alias gp='git push origin main'
+alias gpull='git push origin main'
 alias gs='git status'
 alias gsub='git submodule foreach git pull origin main'
 
@@ -17,9 +18,10 @@ alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
 
 #tmux
+alias t='tmux'
 alias tk='tmux kill-server'
 alias tl='tmux list-sessions'
-alias t='tmux attach'
+alias ta='tmux attach'
 alias ts='tmux source-file ~/.config/tmux/tmux.conf'
 
 #prevent generation of dotfiles in $HOME - tidy up
