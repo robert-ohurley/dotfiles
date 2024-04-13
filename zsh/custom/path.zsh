@@ -1,16 +1,2 @@
-export PATH=~/Programming/scripts/:$PATH
-export PATH=~/Projects/scripts:$PATH
-export PATH=/home//root/.local/bin:$PATH
-export PATH=/home/rojetsavage/.local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
-export PATH=/home/rojetsavage/go:$PATH
-export PATH=/home/rojetsavage/go/bin:$PATH
-
-#node version manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#android
-export XDG_CONFIG_HOME='~/.config'
-export ANDROID_HOME='/home/rojetsavage/Android/Sdk'
+path=("$HOME/Programming/scripts/" "$HOME/Projects/scripts" "$HOME/root/.local/bin" "$HOME/rojetsavage/.local/bin" "$HOME/usr/local/go/bin" "$XDG_DATA_HOME/go")
+export path
