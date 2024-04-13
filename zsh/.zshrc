@@ -32,10 +32,9 @@ export BROWSER="brave-browser"
 export VIDEO="vlc"
 
 #Source user configuration
+source $ZSH/custom/config.zsh	#plugins have to be loaded before oh-my-zsh.sh
 source $ZSH/oh-my-zsh.sh
-source $ZSH/custom/config.zsh
 source $ZSH/custom/path.zsh
 source $ZSH/custom/functions.zsh
 source $ZSH/custom/aliases.zsh
-
 

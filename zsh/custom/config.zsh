@@ -3,10 +3,8 @@ ZSH_THEME="agnoster"
 
 #Load plugins
 plugins=(
-	zsh-autosuggestions	
-	sudo				
-	colorize 			
-
+	zsh-autosuggestions	#real time type-ahead autocompletion	
+	sudo			#prefix your current or previous commands with sudo by pressing esc twice.			
 )
 
 HISTSIZE=100
