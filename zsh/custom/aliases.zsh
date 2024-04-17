@@ -6,7 +6,7 @@ alias gp='git push origin main'
 alias gpull='git push origin main'
 alias gs='git status'
 alias gsub='git submodule foreach git pull origin main'
-
+alias gogit="git add . && git commit -m 'update' && git push origin main"
 
 #navigation 
 alias f='cd "$(find ~ ~/Uni ~/Projects ~/Programming -mindepth 1 -maxdepth 3 -type d | fzf)"'
