@@ -27,3 +27,7 @@ alias ts='tmux source-file ~/.config/tmux/tmux.conf'
 #prevent generation of dotfiles in $HOME - tidy up
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" # Alias wget to use a custom hsts cache file location
 alias nvidia-settings=nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
+
+#sourcing 
+alias szsh='source $XDG_CONFIG_HOME/zsh/.zshrc'
+alias stmux='tmux source-file ~/.config/tmux/tmux.conf'
