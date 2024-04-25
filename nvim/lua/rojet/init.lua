@@ -1,0 +1,5 @@
+require 'rojet.autocmd'
+require 'rojet.opts'
+require 'rojet.remaps'
+require 'rojet.lazy-bootstrap'
+require 'rojet.lazy-plugins'
