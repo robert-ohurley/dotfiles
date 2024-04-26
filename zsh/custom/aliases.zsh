@@ -28,7 +28,8 @@ alias n='nvim'
 alias tk='tmux kill-server'
 alias tls='tmux list-sessions'
 alias ta='tmux attach'
-alias tq='tmux detach'
+alias td='tmux detach'
+
 
 #prevent generation of dotfiles in $HOME - tidy up
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" # Alias wget to use a custom hsts cache file location
