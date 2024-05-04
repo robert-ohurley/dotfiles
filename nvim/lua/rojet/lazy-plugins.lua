@@ -29,6 +29,7 @@ require('lazy').setup({
   require 'rojet.plugins.lsp',
   require 'rojet.plugins.misc',
   require 'rojet.plugins.nvim-tmux-navigator',
+  require 'rojet.plugins.nvim-tree',
   require 'rojet.plugins.telescope',
   require 'rojet.plugins.treesitter',
   require 'rojet.plugins.undotree',
