@@ -9,6 +9,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.opt.guicursor="n-v-i-c:block"
+
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
