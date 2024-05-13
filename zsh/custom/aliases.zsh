@@ -17,6 +17,7 @@ alias c='clear'
 alias ls='ls -l'
 alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
+alias b='btop'
 
 #nvim
 alias vim='nvim'
