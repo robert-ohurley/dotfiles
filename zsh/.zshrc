@@ -37,3 +37,4 @@ source $ZSH/custom/path.zsh
 source $ZSH/custom/functions.zsh
 source $ZSH/custom/aliases.zsh
 
+neofetch
