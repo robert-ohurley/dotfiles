@@ -1,5 +1,6 @@
 return { -- Autoformat
   'stevearc/conform.nvim',
+  event = "VimEnter", 
   lazy = false,
   keys = {
     {
