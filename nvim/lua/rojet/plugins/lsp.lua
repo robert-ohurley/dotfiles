@@ -46,6 +46,9 @@ return {
         tsserver = {
           filetypes = { "javascript", "typescript" }
         },
+        volar = {
+          filetypes = { "vue" }
+        }, 
         --
         lua_ls = {
           -- cmd = {...},
@@ -71,7 +74,7 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'gopls',
-        'tsserver'
+        'tsserver',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
