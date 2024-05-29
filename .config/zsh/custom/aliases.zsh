@@ -28,7 +28,7 @@ alias n='nvim'
 #alias t is a function
 alias tk='tmux kill-server'
 alias tls='tmux list-sessions'
-alias ta='tmux attach'
+alias ta='tmux -u attach'
 alias td='tmux detach'
 
 
