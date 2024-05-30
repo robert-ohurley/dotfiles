@@ -11,7 +11,7 @@ t() {
 
 	selected_name=$(basename "$selected" | tr . _)
 	#Start a new session or attach to an existing session named $selected_name
-	tmux new-session -u -A -c $selected -s $selected_name
+	tmux new-session -A -c $selected -s $selected_name
 	
 	cd selected
 }
