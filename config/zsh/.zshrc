@@ -42,6 +42,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Custom
 source $HOME/.config/zsh/custom/path.zsh
 source $HOME/.config/zsh/custom/functions.zsh
+source $HOME/.config/zsh/custom/config.zsh
 source $HOME/.config/zsh/custom/aliases.zsh
 
 # Shell integrations
