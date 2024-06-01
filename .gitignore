@@ -1,5 +1,5 @@
-.config/nvim/.github
-.config/tmux/plugins
-.config/zsh/custom/.zsh_history
-.config/zsh/custom/plugins
+config/nvim/.github
+config/tmux/plugins
+config/zsh/custom/.zsh_history
+config/zsh/custom/plugins
 /~
