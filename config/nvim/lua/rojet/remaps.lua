@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "go" },
   callback = function(event)
     vim.keymap.set("i", "::", ":=", { buffer = event.buf, desc = "Walrus Operator" })
+    vim.keymap.set("n", "<leader>log", "ifmt.Println(", { buffer = event.buf, desc = "Lazy" })
     vim.keymap.set('n', '<leader>ee', "iif err != nil {\n\t fmt.Println(err)\n}",
       { buffer = event.buf, desc = "Handle those errors" })
   end,
