@@ -1,11 +1,3 @@
-#Load plugins
-plugins=(
-	zsh-autosuggestions	#real time type-ahead autocompletion	
-	sudo			#prefix your current or previous commands with sudo by pressing esc twice.			
-)
-
-HISTSIZE=100
-
 #Moves zsh history location
 HISTFILE=$ZSH/.zsh_history
 
