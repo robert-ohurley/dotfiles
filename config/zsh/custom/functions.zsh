@@ -1,5 +1,5 @@
 addPath() {
-	echo "export PATH=$1:\$PATH" >> $ZSH/custom/path.zsh
+	echo "export PATH=$1:\$PATH\n" >> $ZSH/custom/path.zsh
 }
 
 t() {
@@ -16,7 +16,7 @@ t() {
 	cd selected
 }
 
-#simple navigation
+# Simple navigation
 f() {
 	selected_directory=$(find ~/ -maxdepth 4 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/.config/*' -o -path '*/node_modules/*' \) -prune -o -type d -print | fzf)
 	cd "$selected_directory"
@@ -38,5 +38,14 @@ killport() {
 mkcd() {
 	mkdir $1
 	cd $1
+}
+
+
+# Nvm takes up ~90% of shell loading time. Alias to a function and lazy load.
+nvm() {
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm
 }
 
