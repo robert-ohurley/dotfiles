@@ -1,10 +1,10 @@
 return { -- Autoformat
   'stevearc/conform.nvim',
-  event = "VimEnter", 
+  event = "BufEnter", 
   lazy = false,
   keys = {
     {
-      '<leader>FM',
+      '<leader>fm',
       function()
         require('conform').format { async = true, lsp_fallback = true }
       end,
