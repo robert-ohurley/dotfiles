@@ -18,6 +18,7 @@ alias ls='ls -l'
 alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
 alias b='btop'
+alias l='exa --icons -F -H --group-directories-first -1'
 
 #nvim
 alias vim='nvim'
