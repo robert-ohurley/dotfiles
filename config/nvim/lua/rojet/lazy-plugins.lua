@@ -1,5 +1,6 @@
 require('lazy').setup({
   require 'rojet.plugins.autoformat',
+  require 'rojet.plugins.alpha',
   require 'rojet.plugins.autocomplete',
   require 'rojet.plugins.cloak',
   require 'rojet.plugins.colorscheme',
