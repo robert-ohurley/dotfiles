@@ -13,7 +13,9 @@ export ANDROID_HOME=$XDG_DATA_HOME/Android/Sdk
 export ANDROID_USER_HOME=$XDG_DATA_HOME/android
 export AWS_SHARED_CREDENTIALS_FILE=$XDG_CONFIG_HOME/aws/credentials
 export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config 
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export DOTNET_CLI_HOME=$XDG_DATA_HOME/dotnet
 export GNUPGHOME=$XDG_DATA_HOME/gnupg     	#might cause problems
 export GOPATH="$XDG_DATA_HOME"/go
@@ -24,6 +26,7 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NVM_DIR=$XDG_DATA_HOME/nvm
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 
 # Default Apps
 export BROWSER="brave-browser"
