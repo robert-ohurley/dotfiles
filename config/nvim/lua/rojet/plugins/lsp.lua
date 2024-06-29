@@ -35,6 +35,7 @@ return {
       local servers = {
         -- clangd = {},
         gopls = {},
+        bashls = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -48,7 +49,7 @@ return {
         },
         volar = {
           filetypes = { "vue" }
-        }, 
+        },
         --
         lua_ls = {
           -- cmd = {...},
@@ -75,6 +76,7 @@ return {
         'stylua', -- Used to format Lua code
         'gopls',
         'tsserver',
+        'bashls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
