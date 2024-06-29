@@ -1,0 +1,63 @@
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+live_config_reload = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor.style]
+blinking = "Never"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 15
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 1 
+
+[mouse]
+bindings = [
+{ mouse = "Middle", mods = "Control", action = "Paste" },
+]
+
+[selection]
+save_to_clipboard = true
+
+[shell]
+program = "/bin/zsh"
+
+[terminal]
+osc52 = "CopyPaste"
+
+[window]
+decorations = "Full"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 0 
+y = 10
