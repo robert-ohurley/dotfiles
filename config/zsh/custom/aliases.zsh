@@ -8,11 +8,12 @@ alias gs='git status'
 alias gsub='git submodule foreach git pull origin main'
 alias gg="git add . && git commit -m 'update' && git push origin main"
 alias gd="git diff --staged --color-words"
+alias lg="lazygit"
 
 #navigation 
 #alias f is a function
 
-#misc'
+#misc
 alias c='clear'
 alias ls='ls -l'
 alias echoServer='node ~/Projects/echoServer/index.js'
