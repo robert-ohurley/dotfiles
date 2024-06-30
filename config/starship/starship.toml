@@ -1,9 +1,10 @@
+format = """$character$directory$git_status$git_branch"""
+right_format = """$all"""
 add_newline = false
 
-format = """$character$directory$git_status$git_branch"""
-
-# move the rest of the prompt to the right
-right_format = """$all"""
+[directory]
+truncation_length = 2
+truncation_symbol = '../'
 
 [os]
 disabled = true
@@ -23,9 +24,6 @@ ssh_symbol = " "
 min_time = 1
 format = 'took [$duration](bold yellow)'
 
-[aws]
-symbol = "  "
-
 [c]
 symbol = " "
 
@@ -37,9 +35,6 @@ symbol = " "
 
 [golang]
 symbol = " "
-
-[java]
-symbol = " "
 
 [lua]
 symbol = " "
@@ -61,12 +56,6 @@ symbol = "󰏗 "
 
 [python]
 symbol = " "
-
-[rlang]
-symbol = "󰟔 "
-
-[ruby]
-symbol = " "
 
 [rust]
 symbol = " "
