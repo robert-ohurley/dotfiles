@@ -9,6 +9,7 @@ alias gsub='git submodule foreach git pull origin main'
 alias gg="git add . && git commit -m 'update' && git push origin main"
 alias gd="git diff --staged --color-words"
 alias lg="lazygit"
+alias nvm="fnm"
 
 #navigation 
 #alias f is a function

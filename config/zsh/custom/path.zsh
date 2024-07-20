@@ -23,10 +23,12 @@ export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export HISTFILE=$XDG_STATE_HOME/zsh/history 
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history 
-export NVM_DIR=$XDG_DATA_HOME/nvm
+export NVM_DIR=$XDG_CONFIG_HOME/nvm
+export NODEJS_HOME=/lib/node/nodejs
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export FNM_PATH="/home/rojetsavage/.local/share/fnm"
 
 # Default Apps
 export BROWSER="brave-browser"
@@ -39,6 +41,8 @@ export PATH=/home/root/.local/bin:$PATH
 export PATH=/home/rojetsavage/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=/home/rojetsavage/go:$PATH
+export PATH=$NODEJS_HOME:$PATH
+export PATH=/home/rojetsavage/.local/share/nvim/mason/bin:$PATH
 export PATH=/home/rojetsavage/go/bin:$PATH
 export PATH=/home/rojetsavage/.local/share:$PATH
 export PATH=/home/rojetsavage/.local/share/go/bin:$PATH

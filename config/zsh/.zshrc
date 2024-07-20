@@ -47,3 +47,10 @@ source $HOME/.config/zsh/custom/aliases.zsh
 
 # Shell integrations
 eval "$(starship init zsh)"
+
+# fnm
+FNM_PATH="/home/rojetsavage/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/rojetsavage/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
