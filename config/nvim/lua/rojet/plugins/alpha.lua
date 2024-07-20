@@ -55,15 +55,16 @@ return {
         opts = { hl = "NeovimDashboardUsername", shrink_margin = false, position = "center" },
       },
     }
+    
     -- stylua: ignore
     dashboard.section.buttons.val = {
-      dashboard.button("f", " " .. " Find file",       "<cmd> Telescope find_files <cr>"),
+      dashboard.button("f", " " .. " Find file",       "<cmd> silent! lua require('telescope.builtin').find_files({hidden = true})<cr>"),
       dashboard.button("n", " " .. " New file",        "<cmd> ene <BAR> startinsert <cr>"),
       dashboard.button("r", " " .. " Recent files",    "<cmd> Telescope oldfiles <cr>"),
       dashboard.button("w", " " .. " Find text",       "<cmd> Telescope live_grep <cr>"),
-      dashboard.button("Z", " " .. " Open Directories", "<cmd> lua require('telescope').extensions.zoxide.list() <cr>"),
-      dashboard.button("c", " " .. " Config",          "<cmd> lua require('lazyvim.util').telescope.config_files()() <cr>"),
-      dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
+    --dashboard.button("Z", " " .. " Open Directories", "<cmd> lua require('telescope').extensions.zoxide.list() <cr>"),
+    --dashboard.button("c", " " .. " Config",          "<cmd> lua require('../../rojet/').telescope.config_files()() <cr>"),
+    --dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
     --dashboard.button("x", " " .. " Lazy Extras",     "<cmd> LazyExtras <cr>"),
       dashboard.button("l", "󰒲 " .. " Lazy",            "<cmd> Lazy <cr>"),
       dashboard.button("q", " " .. " Quit",            "<cmd> qa <cr>"),
