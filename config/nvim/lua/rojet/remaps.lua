@@ -15,9 +15,9 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "go" },
   callback = function(event)
     vim.keymap.set("i", "::", ":=", { buffer = event.buf, desc = "Walrus Operator" })
-    vim.keymap.set("n", "<leader>log", "ifmt.Println(", { buffer = event.buf, desc = "Lazy" })
-    vim.keymap.set('n', '<leader>ee', "iif err != nil {\n\t fmt.Println(err)\n}",
-      { buffer = event.buf, desc = "Handle those errors" })
+    vim.keymap.set('n', '<leader>gtj', "<cmd>GoTagAdd json<CR>", { buffer = event.buf, desc = "Add JSON struct tags" })
+    vim.keymap.set('n', '<leader>ee', "<cmd>GoIfErr<CR>", { buffer = event.buf, desc = "Handle those errors" })
+    vim.keymap.set('n', '<leader>gta', "<cmd>GoTestAdd<CR>", { buffer = event.buf, desc = "Handle those errors" })
   end,
 })
 
@@ -33,7 +33,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- I'm scared of the blackhole register
-vim.keymap.set('v', '<leader>p', '"_dp', { desc = 'Delete to blackhole register when pasting' })
+vim.keymap.set('v', 'p', '"_dp', { desc = 'Always delete to blackhole register when pasting' })
 vim.keymap.set('n', 'J', '5j')
 vim.keymap.set('n', 'K', '5k')
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Insert new line below. Stay in normal mode' })
