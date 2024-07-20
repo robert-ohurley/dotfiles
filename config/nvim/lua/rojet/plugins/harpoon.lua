@@ -16,7 +16,7 @@ return {
       vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
       vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
 
-      vim.keymap.set("n", "<C-h>", function() harpoon:list():prev() end)
-      vim.keymap.set("n", "<C-l>", function() harpoon:list():next() end)
+      vim.keymap.set("n", "<A-h>", function() harpoon:list():prev() end)
+      vim.keymap.set("n", "<A-l>", function() harpoon:list():next() end)
     end
 }
