@@ -25,6 +25,10 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set('i', '<C-]>', '<Esc>?{<CR><Esc>da}a{<CR>}<Esc>ko',
   { desc = 'after closing curly bracket, position cursor inside with correct formatting' })
 
+-- Lsp
+vim.keymap.set('n', '<leader>li', "<cmd>LspInfo<CR>", { desc = "Get LSP info" })
+vim.keymap.set('n', '<leader>lr', "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
