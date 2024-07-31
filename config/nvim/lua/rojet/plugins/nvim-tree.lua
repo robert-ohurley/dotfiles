@@ -15,7 +15,7 @@ return {
       },
 
       renderer = {
-        group_empty = true,
+        group_empty = false,
         icons = {
           git_placement = 'after',
           show = {
