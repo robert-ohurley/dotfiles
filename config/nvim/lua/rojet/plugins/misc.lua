@@ -17,6 +17,28 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+
+      require('mini.comment').setup(
+        {
+          -- Options which control module behavior
+          options = {
+            -- Whether to ignore blank lines when commenting
+            ignore_blank_line = true,
+          },
+          mappings = {
+            -- Toggle comment (like `gcip` - comment inner paragraph) for both
+            -- Normal and Visual modes
+            comment = 'gc',
+            comment_line = 'gcc',
+            comment_visual = 'gc',
+
+            -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+            -- Works also in Visual mode if mapping differs from `comment_visual`
+            textobject = 'gc',
+          },
+        }
+      )
+
       -- Simple and easy statusline.
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
@@ -26,17 +48,6 @@ return {
       end
     end,
   },
-
-  {
-    -- gco - Comment below
-    -- gcO - Comment above
-    -- gcA - Comment at the end of the line
-    -- gc - Line-comment
-    -- gb - Block-comment
-    'numToStr/Comment.nvim',
-    lazy = false,
-  },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
 }
