@@ -11,7 +11,6 @@ return {
       require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
@@ -24,6 +23,14 @@ return {
           options = {
             -- Whether to ignore blank lines when commenting
             ignore_blank_line = true,
+            custom_commentstring = function()
+              if (vim.bo.filetype == "vue")
+                then
+                  return "<!-- %s -->" 
+
+              else
+                return vim.bo.commentstring end
+              end
           },
           mappings = {
             -- Toggle comment (like `gcip` - comment inner paragraph) for both
@@ -50,4 +57,5 @@ return {
   },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+
 }

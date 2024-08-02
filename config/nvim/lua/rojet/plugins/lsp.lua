@@ -36,17 +36,24 @@ return {
         -- clangd = {},
         gopls = {},
         bashls = {
-         filetypes = { "bash" },
+          filetypes = { "bash" },
         },
         jsonls = {
-         filetypes = { "json" },
+          filetypes = { "json" },
         },
         pyright = {},
         tsserver = {
           filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
         },
+        -- If hybridMode is set to false Volar will run embedded tsserver therefore there is no need to run it separately.
+        -- Make sure you have typescript installed globally or pass the location to volar
         volar = {
-          filetypes = { "vue" }
+          filetypes = { "vue" },
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
         },
         --
         lua_ls = {
@@ -78,7 +85,7 @@ return {
         'html',
         'bashls',
         'jsonls',
-
+        'volar',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
