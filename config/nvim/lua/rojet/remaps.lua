@@ -1,6 +1,7 @@
 -- KEYMAPS
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Remove highlighted search' })
 vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('n', 'zF', 'f{v%zf', { desc = 'Fold function block when cursor is on the method signature (or any {} block)})'})
 
 -- i'm going to get fired for these
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Finally figured it out' })
@@ -20,10 +21,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<leader>gta', "<cmd>GoTestAdd<CR>", { buffer = event.buf, desc = "Handle those errors" })
   end,
 })
-
--- Now that's what I call being lazy
-vim.keymap.set('i', '<C-]>', '<Esc>?{<CR><Esc>da}a{<CR>}<Esc>ko',
-  { desc = 'after closing curly bracket, position cursor inside with correct formatting' })
 
 -- Lsp
 vim.keymap.set('n', '<leader>li', "<cmd>LspInfo<CR>", { desc = "Get LSP info" })
