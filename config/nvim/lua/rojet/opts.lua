@@ -10,6 +10,15 @@ vim.opt.expandtab = true
 
 vim.opt.guicursor="n-v-i-c:block"
 
+function _G.CustomFoldText()
+    return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
+end
+
+vim.opt.foldtext='v:lua.CustomFoldText()'
+vim.opt.foldmethod="manual"
+vim.opt.foldlevel=99
+
+
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
