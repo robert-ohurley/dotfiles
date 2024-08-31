@@ -1,5 +1,5 @@
-format = """$character$directory$git_status$git_branch"""
-right_format = """$hostname$cmd_duration"""
+format = """$character$directory$git_branch"""
+right_format = """$hostname$localip$cmd_duration"""
 add_newline = false
 
 [directory]
@@ -20,6 +20,11 @@ trim_at = ""
 format = "[$ssh_symbol](bold blue) [$hostname](bold blue)"
 disabled = false
 ssh_symbol = ""
+
+[localip]
+ssh_only = true
+format = "@[$localipv4](bold blue)"
+disabled = false
 
 [cmd_duration]
 min_time = 1000
