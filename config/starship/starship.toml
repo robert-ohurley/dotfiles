@@ -1,5 +1,5 @@
 format = """$character$directory$git_status$git_branch"""
-right_format = """$all"""
+right_format = """$hostname$cmd_duration"""
 add_newline = false
 
 [directory]
@@ -15,14 +15,15 @@ disabled = false
 style = "bold purple"
 
 [hostname]
-ssh_only = false
-trim_at = "."
-disabled = true
-ssh_symbol = " "
+ssh_only = true
+trim_at = ""
+format = "[$ssh_symbol](bold blue) [$hostname](bold blue)"
+disabled = false
+ssh_symbol = ""
 
 [cmd_duration]
-min_time = 1
-format = 'took [$duration](bold yellow)'
+min_time = 1000
+format = ' took [$duration](bold blue)'
 
 [c]
 symbol = " "
