@@ -4,7 +4,6 @@ require('lazy').setup({
   require 'rojet.plugins.autocomplete',
   require 'rojet.plugins.cloak',
   require 'rojet.plugins.colorscheme',
-  require 'rojet.plugins.fugitive',
   require 'rojet.plugins.gitsigns',
   require 'rojet.plugins.gopher',
   require 'rojet.plugins.harpoon',
