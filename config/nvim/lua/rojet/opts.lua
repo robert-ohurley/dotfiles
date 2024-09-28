@@ -1,6 +1,7 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 vim.g.have_nerd_font = true
 
 vim.opt.tabstop = 4
@@ -8,16 +9,15 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.guicursor="n-v-i-c:block"
+vim.opt.guicursor = 'n-v-i-c:block'
 
 function _G.CustomFoldText()
-    return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub("^%s*", "")
+  return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub('^%s*', '')
 end
 
-vim.opt.foldtext='v:lua.CustomFoldText()'
-vim.opt.foldmethod="manual"
-vim.opt.foldlevel=99
-
+vim.opt.foldtext = 'v:lua.CustomFoldText()'
+vim.opt.foldmethod = 'manual'
+vim.opt.foldlevel = 99
 
 -- Make line numbers default
 vim.opt.number = true
@@ -77,7 +77,3 @@ vim.opt.scrolloff = 14
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-
-
-
-
