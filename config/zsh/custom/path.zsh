@@ -1,5 +1,3 @@
-export HOME=/home/rojetsavage
-
 #XDG paths
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
@@ -28,7 +26,7 @@ export NODEJS_HOME=/lib/node/nodejs
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export FNM_PATH="/home/rojetsavage/.local/share/fnm"
+export FNM_PATH="$HOME/.local/share/fnm"
 
 # Default Apps
 export BROWSER="brave-browser"
@@ -38,13 +36,13 @@ export VIDEO="vlc"
 export PATH=~/Programming/scripts/:$PATH
 export PATH=~/Projects/scripts:$PATH
 export PATH=/home/root/.local/bin:$PATH
-export PATH=/home/rojetsavage/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
-export PATH=/home/rojetsavage/go:$PATH
+export PATH=$HOME/go:$PATH
 export PATH=$NODEJS_HOME:$PATH
-export PATH=/home/rojetsavage/.local/share/nvim/mason/bin:$PATH
-export PATH=/home/rojetsavage/go/bin:$PATH
-export PATH=/home/rojetsavage/.local/share:$PATH
-export PATH=/home/rojetsavage/.local/share/go/bin:$PATH
+export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/.local/share:$PATH
+export PATH=$HOME/.local/share/go/bin:$PATH
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
