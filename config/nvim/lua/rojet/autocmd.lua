@@ -1,3 +1,17 @@
+-- reload config on save
+--
+--
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '**/rojet/*.lua',
+  callback = function()
+    local filepath = vim.fn.expand '%'
+
+    dofile(filepath)
+    -- vim.notify('Configuration reloaded \n' .. filepath, nil)
+  end,
+  desc = 'Reload config on save',
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -10,12 +24,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Open help window in a vertical split to the right.
-vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = vim.api.nvim_create_augroup("help_window_right", {}),
-    pattern = { "*.txt" },
-    callback = function()
-        if vim.o.filetype == 'help' then vim.cmd.wincmd("L") end
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = vim.api.nvim_create_augroup('help_window_right', {}),
+  pattern = { '*.txt' },
+  callback = function()
+    if vim.o.filetype == 'help' then
+      vim.cmd.wincmd 'L'
     end
+  end,
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -52,7 +68,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         callback = vim.lsp.buf.clear_references,
       })
     end
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd('LspDetach', {
