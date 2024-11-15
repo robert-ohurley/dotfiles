@@ -9,11 +9,11 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim',       opts = {} },
+      { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -36,19 +36,20 @@ return {
         -- clangd = {},
         gopls = {},
         bashls = {
-          filetypes = { "bash" },
+          filetypes = { 'bash' },
         },
         jsonls = {
-          filetypes = { "json" },
+          filetypes = { 'json' },
         },
         pyright = {},
-        tsserver = {
-          filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+        csharp_ls = {},
+        ts_ls = {
+          filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
         },
         -- If hybridMode is set to false Volar will run embedded tsserver therefore there is no need to run it separately.
         -- Make sure you have typescript installed globally or pass the location to volar
         volar = {
-          filetypes = { "vue" },
+          filetypes = { 'vue' },
           init_options = {
             vue = {
               hybridMode = false,
@@ -80,7 +81,7 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua',
         'gopls',
-        'tsserver',
+        'ts_ls',
         'pyright',
         'html',
         'bashls',

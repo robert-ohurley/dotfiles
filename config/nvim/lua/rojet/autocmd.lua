@@ -1,6 +1,4 @@
 -- reload config on save
---
---
 vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = '**/rojet/*.lua',
   callback = function()
