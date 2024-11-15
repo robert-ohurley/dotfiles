@@ -6,9 +6,9 @@ export XDG_PICTURES_DIR=$HOME/picures
 export XDG_STATE_HOME=$HOME/.local/state
 
 #Other variables
-export ANDROID_HOME=$XDG_DATA_HOME/android/sdk
-export ANDROID_HOME=$XDG_DATA_HOME/Android/Sdk
+export ANDROID_HOME=$HOME/Android/sdk
 export ANDROID_USER_HOME=$XDG_DATA_HOME/android
+export ANDROID_SDK_ROOT=$HOME/Android
 export AWS_SHARED_CREDENTIALS_FILE=$XDG_CONFIG_HOME/aws/credentials
 export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -27,6 +27,7 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export FNM_PATH="$HOME/.local/share/fnm"
+export VIMRUNTIME="$XDG_CONFIG_HOME/nvim"
 
 # Default Apps
 export BROWSER="brave-browser"

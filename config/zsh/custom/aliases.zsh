@@ -20,6 +20,7 @@ alias ls='ls -l'
 alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
 alias b='btop'
+alias s3='sqlite3'
 alias l='exa --icons -F -H --group-directories-first -1'
 
 #nvim

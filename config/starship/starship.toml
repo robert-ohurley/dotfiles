@@ -1,5 +1,5 @@
 format = """$character$directory$git_branch"""
-right_format = """$hostname$localip$cmd_duration"""
+right_format = """$nodejs$hostname$localip$cmd_duration"""
 add_newline = false
 
 [directory]
@@ -23,7 +23,7 @@ ssh_symbol = ""
 
 [localip]
 ssh_only = true
-format = "@[$localipv4](bold blue)"
+format = "@(bold blue)[$localipv4](bold blue)"
 disabled = false
 
 [cmd_duration]
