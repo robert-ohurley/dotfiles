@@ -47,3 +47,4 @@ source $HOME/.config/zsh/custom/aliases.zsh
 
 # Shell integrations
 eval "$(starship init zsh)"
+

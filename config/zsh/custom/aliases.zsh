@@ -11,7 +11,7 @@ alias gd="git diff --staged --color-words"
 alias lg="lazygit"
 alias nvm="fnm"
 
-#navigation 
+#navigation
 #alias f is a function
 
 #misc
@@ -21,6 +21,7 @@ alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
 alias b='btop'
 alias l='exa --icons -F -H --group-directories-first -1'
+alias talon='/home/rojetsavage/.local/share/talon/run.sh'
 
 #nvim
 alias vim='nvim'
@@ -39,6 +40,6 @@ alias td='tmux detach'
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" # Alias wget to use a custom hsts cache file location
 alias nvidia-settings=nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
 
-#sourcing 
+#sourcing
 alias szsh='source $XDG_CONFIG_HOME/zsh/.zshrc'
 alias stmux='tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf'
