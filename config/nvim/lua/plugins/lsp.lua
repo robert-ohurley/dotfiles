@@ -42,7 +42,7 @@ return {
           filetypes = { 'json' },
         },
         pyright = {},
-        csharp_ls = {},
+        csharp_ls = { 'csharp' },
         ts_ls = {
           filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
         },
@@ -87,6 +87,7 @@ return {
         'bashls',
         'jsonls',
         'volar',
+        'csharp_ls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
