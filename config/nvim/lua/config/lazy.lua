@@ -34,7 +34,7 @@ require('lazy').setup({
   },
 })
 
-function requireAllPlugins()
+local function requireAllPlugins()
   local files = vim.api.nvim_get_runtime_file('/lua/rojet/plugins/*.lua', true)
   for _, file in pairs(files) do
     -- print(string.sub(file, 36))

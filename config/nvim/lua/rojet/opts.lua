@@ -4,6 +4,12 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
+-- use for talon to detect the window
+vim.opt.title = true
+-- Use file type to determine specific voice commands
+-- Use 'neovim' For neovim specific voice mappings
+vim.opt.titlestring = [[Neovim - %t]]
+
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
