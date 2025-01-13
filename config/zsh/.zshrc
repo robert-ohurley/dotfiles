@@ -45,6 +45,8 @@ source $HOME/.config/zsh/custom/functions.zsh
 source $HOME/.config/zsh/custom/config.zsh
 source $HOME/.config/zsh/custom/aliases.zsh
 
+eval "$(~/.local/bin/mise activate)"
+
 # Shell integrations
 eval "$(starship init zsh)"
 
