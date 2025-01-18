@@ -23,7 +23,7 @@ ssh_symbol = ""
 
 [localip]
 ssh_only = true
-format = "@[$localipv4](bold blue)"
+format = "@(bold blue)[$localipv4](bold blue)"
 disabled = false
 
 [cmd_duration]
