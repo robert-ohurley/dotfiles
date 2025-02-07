@@ -27,7 +27,11 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export FNM_PATH="$HOME/.local/share/fnm"
-export VIMRUNTIME="$XDG_CONFIG_HOME/nvim"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
+
+
+
 
 # Default Apps
 export BROWSER="brave-browser"

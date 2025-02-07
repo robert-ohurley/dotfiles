@@ -15,8 +15,5 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/rojetsavage/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
-<<<<<<< HEAD
 
 
-=======
->>>>>>> e810a2ea2f234c62991ce534ea88b7681fe2a6d4
