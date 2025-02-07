@@ -33,16 +33,15 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         gopls = {},
         bashls = {
-          filetypes = { 'bash' },
+          filetypes = { 'bash', 'sh', 'zsh' },
         },
         jsonls = {
           filetypes = { 'json' },
         },
         pyright = {},
-        csharp_ls = { 'csharp' },
         ts_ls = {
           filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
         },
@@ -87,7 +86,9 @@ return {
         'bashls',
         'jsonls',
         'volar',
-        'csharp_ls',
+        'eslint-lsp',
+        'clangd',
+        'codelldb',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
