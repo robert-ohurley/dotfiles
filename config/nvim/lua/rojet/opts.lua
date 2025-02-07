@@ -8,12 +8,14 @@ vim.g.have_nerd_font = true
 vim.opt.title = true
 -- Use file type to determine specific voice commands
 -- Use 'neovim' For neovim specific voice mappings
-vim.opt.titlestring = [[Neovim - %t]]
+vim.opt.titlestring = [[nvim - %t]]
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+vim.opt.cmdheight = 0
 
 vim.opt.guicursor = 'n-v-i-c:block'
 
@@ -79,7 +81,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 14
+vim.opt.scrolloff = 5
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true

@@ -13,6 +13,10 @@ vim.keymap.set('n', '<leader>ya', 'ggVGy', { desc = '[Y]ank [A]ll' })
 vim.keymap.set('i', '<C-p>', '<Esc>p', { desc = 'Paste in insert mode' })
 vim.keymap.set('v', 'p', '"_dp', { desc = 'Always delete to blackhole register when pasting' })
 
+-- Debugger --
+vim.keymap.set('n', '<leader>db', '<cmd> DapToggleBreakpoint <CR>', { desc = 'Add [d]ebugger [b]reakpoint' })
+vim.keymap.set('n', '<leader>dr', '<cmd> DapContinue <CR>', { desc = '[d]ebugger [r]un' })
+
 -- Misc --
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Remove highlighted search' })
 vim.keymap.set('i', 'jk', '<Esc>')
