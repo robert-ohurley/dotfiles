@@ -1,15 +1,14 @@
 #git
-alias ga='git add .'
 alias gupdate='git commit -m "update"'
 alias gl='git log --oneline --graph'
-alias gp='git push origin main'
-alias gpull='git pull origin main'
+alias gp='git pull origin master'
 alias gs='git status'
-alias gsub='git submodule foreach git pull origin main'
-alias gg="git add . && git commit -m 'update' && git push origin main"
+alias gcm='git checkout master'
 alias gd="git diff --staged --color-words"
 alias lg="lazygit"
+alias ld="lazydocker"
 alias nvm="fnm"
+alias servedir="python3 -m http.server 8000"
 
 #navigation
 #alias f is a function
@@ -17,12 +16,10 @@ alias nvm="fnm"
 #misc
 alias c='clear'
 alias ls='ls -l'
-alias echoServer='node ~/Projects/echoServer/index.js'
 alias uu='sudo apt update && sudo apt upgrade'
 alias b='btop'
 alias s3='sqlite3'
-alias l='exa --icons -F -H --group-directories-first -1'
-alias talon='/home/rojetsavage/.local/share/talon/run.sh'
+alias l='eza --icons -F -H --group-directories-first -1'
 
 #nvim
 alias vim='nvim'
@@ -36,6 +33,14 @@ alias tls='tmux list-sessions'
 alias ta='tmux -u attach'
 alias td='tmux detach'
 
+#docker
+alias dip='docker exec -it vivi-local-cloud-vivi-portal-1 sh'
+alias dib='docker exec -it vivi-local-cloud-vivi-backend-1 sh'
+alias dic='docker exec -it vivi-local-cloud-vivi-client-1 sh'
+alias dcu='docker compose up -d'
+alias dps='docker ps'
+alias dk='docker stop $(docker ps -q) && docker rm $(docker ps -q)'
+alias dstop='docker stop $(docker ps -q)'
 
 #prevent generation of dotfiles in $HOME - tidy up
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" # Alias wget to use a custom hsts cache file location

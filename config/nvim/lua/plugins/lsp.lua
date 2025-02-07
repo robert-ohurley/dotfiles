@@ -33,29 +33,29 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         gopls = {},
         bashls = {
-          filetypes = { 'bash' },
+          filetypes = { 'bash', 'sh', 'zsh' },
         },
         jsonls = {
           filetypes = { 'json' },
         },
         pyright = {},
-        csharp_ls = { 'csharp' },
+        ruby_lsp = {},
         ts_ls = {
           filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
         },
         -- If hybridMode is set to false Volar will run embedded tsserver therefore there is no need to run it separately.
         -- Make sure you have typescript installed globally or pass the location to volar
-        volar = {
-          filetypes = { 'vue' },
-          init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          },
-        },
+        -- volar = {
+        --   filetypes = { 'vue' },
+        --   init_options = {
+        --     vue = {
+        --       hybridMode = false,
+        --     },
+        --   },
+        -- },
         --
         lua_ls = {
           -- cmd = {...},
@@ -79,15 +79,17 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua',
-        'gopls',
-        'ts_ls',
-        'pyright',
-        'html',
         'bashls',
+        'clangd',
+        'codelldb',
+        'eslint-lsp',
+        'gopls',
+        'html',
         'jsonls',
-        'volar',
-        'csharp_ls',
+        'pyright',
+        'stylua',
+        'ruby_lsp',
+        'ts_ls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
