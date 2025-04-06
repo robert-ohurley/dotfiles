@@ -10,10 +10,8 @@ alias nvidia-settings=nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/setting
 export PYTHON_HISTORY="$XDG_CONFIG_HOME"/python
 
 # fnm
-FNM_PATH="/home/rojetsavage/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/rojetsavage/.local/share/fnm:$PATH"
+  export PATH="$HOME/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
-
-

@@ -32,6 +32,9 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -51,9 +54,12 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-
 eval "$(~/.local/bin/mise activate)"
 
 # Shell integrations
 eval "$(starship init zsh)"
+
+# Ruby version manager
+# eval "$(frum init)"
+
 
