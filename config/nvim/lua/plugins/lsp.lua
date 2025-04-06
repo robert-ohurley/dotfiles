@@ -42,6 +42,7 @@ return {
           filetypes = { 'json' },
         },
         pyright = {},
+        ruby_lsp = {},
         ts_ls = {
           filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
         },
@@ -78,17 +79,17 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua',
-        'gopls',
-        'ts_ls',
-        'pyright',
-        'html',
         'bashls',
-        'jsonls',
-        'volar',
-        'eslint-lsp',
         'clangd',
         'codelldb',
+        'eslint-lsp',
+        'gopls',
+        'html',
+        'jsonls',
+        'pyright',
+        'stylua',
+        'ts_ls',
+        'volar',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
