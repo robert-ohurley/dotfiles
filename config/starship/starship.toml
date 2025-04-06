@@ -1,5 +1,5 @@
-format = """$character$directory$git_branch"""
-right_format = """$hostname$localip$cmd_duration$go$python$nodejs"""
+format = """rob@vivi $character$directory"""
+right_format = """$hostname$localip$go$python$nodejs"""
 add_newline = false
 
 [directory]
@@ -50,7 +50,7 @@ symbol = "󰍛 "
 
 [nodejs]
 symbol = " "
-format = " via[ Node $version](bold green) "
+format = " [ Node $version](bold green) "
 detect_files = ["package.json", ".node-version"]
 detect_folders = ["node_modules"]
 
@@ -62,7 +62,7 @@ symbol = "󰏗 "
 
 [python]
 symbol = " "
-format = " via [  $version$pyenv_prefix](bold green) "
+format = " [  $version$pyenv_prefix](bold green) "
 
 [rust]
 symbol = " "
