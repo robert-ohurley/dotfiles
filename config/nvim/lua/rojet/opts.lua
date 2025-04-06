@@ -10,12 +10,11 @@ vim.opt.title = true
 -- Use 'neovim' For neovim specific voice mappings
 vim.opt.titlestring = [[nvim - %t]]
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.opt.cmdheight = 0
 
 vim.opt.guicursor = 'n-v-i-c:block'
 
@@ -44,7 +43,7 @@ vim.opt.termguicolors = true
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
