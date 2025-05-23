@@ -9,6 +9,7 @@ vim.opt.title = true
 -- Use file type to determine specific voice commands
 -- Use 'neovim' For neovim specific voice mappings
 vim.opt.titlestring = [[nvim - %t]]
+vim.opt.tabline = ""
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

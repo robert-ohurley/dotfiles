@@ -58,6 +58,15 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.lsp.buf.code_action, { desc = 'Show available code actions' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
+vim.keymap.set("n", "<leader>cl", function()
+  local word = vim.fn.expand("<cWORD>")
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+
+  vim.api.nvim_buf_set_lines(0, line, line, false, {
+    string.format('console.log("%s:", %s);', word, word)
+  })
+end, { desc = "Console.log WORD under cursor" })
+
 
 -- Quickfix list
 vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -70,6 +79,8 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the above window' })
+vim.keymap.set('n', '<C-p>', ':bp<CR>', { desc = 'Previous buffer in list' })
+vim.keymap.set('n', '<C-n>', ':bn<CR>', { desc = 'Next buffer in list' })
 
 -- Terminal
 vim.keymap.set('n', '<leader>x', ':!chmod +x %<CR>', { desc = 'Make current file e[x]ecutable' })
