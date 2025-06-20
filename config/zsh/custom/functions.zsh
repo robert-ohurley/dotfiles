@@ -1,3 +1,20 @@
+mkbranch() {
+  local number="$1"
+  shift
+
+  local parts=()
+  for word in "$@"; do
+    # Convert to lowercase and replace spaces/underscores with dash
+    kebab=$(echo "$word" | tr '[:upper:]' '[:lower:]' | tr ' _' '-')
+    parts+=("$kebab")
+  done
+
+  local suffix=$(IFS=- ; echo "${parts[*]}")
+
+  echo "vivi-${number}-${suffix}" | xclip -selection clipboard
+}
+ 
+
 addPath() {
 	echo "export PATH=$1:\$PATH\n" >> $ZSH/custom/path.zsh
 }

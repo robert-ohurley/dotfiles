@@ -28,7 +28,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export FNM_PATH="$HOME/.local/share/fnm"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
-export GSTREAMER_LINUX_SDK_ROOT=/usr/lib/gstreamer-1.0-linux-x86-64-1.16.2/
+export GSTREAMER_LINUX_SDK_ROOT=/usr/lib/gstreamer-1.0-linux-x86-64-1.26
 
 
 export PATH="$HOME/.rbenv/bin:$PATH"
