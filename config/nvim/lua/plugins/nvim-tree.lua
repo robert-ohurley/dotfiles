@@ -24,7 +24,7 @@ return {
         },
       },
       filters = {
-        dotfiles = false,
+        enable = false
       },
     })
   end

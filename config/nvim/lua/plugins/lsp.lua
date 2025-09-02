@@ -48,14 +48,14 @@ return {
         },
         -- If hybridMode is set to false Volar will run embedded tsserver therefore there is no need to run it separately.
         -- Make sure you have typescript installed globally or pass the location to volar
-        volar = {
-          filetypes = { 'vue' },
-          init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          },
-        },
+        -- volar = {
+        --   filetypes = { 'vue' },
+        --   init_options = {
+        --     vue = {
+        --       hybridMode = false,
+        --     },
+        --   },
+        -- },
         --
         lua_ls = {
           -- cmd = {...},
@@ -88,8 +88,8 @@ return {
         'jsonls',
         'pyright',
         'stylua',
+        'ruby_lsp',
         'ts_ls',
-        'volar',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
