@@ -41,9 +41,9 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'go' },
   callback = function(event)
     vim.keymap.set('i', '::', ':=', { buffer = event.buf, desc = 'Walrus Operator' })
-    vim.keymap.set('n', '<leader>gtj', '<cmd>GoTagAdd json<CR>', { buffer = event.buf, desc = 'Add JSON struct tags' })
+    -- vim.keymap.set('n', '<leader>gtj', '<cmd>GoTagAdd json<CR>', { buffer = event.buf, desc = 'Add JSON struct tags' })
     vim.keymap.set('n', '<leader>ee', '<cmd>GoIfErr<CR>', { buffer = event.buf, desc = 'Handle those errors' })
-    vim.keymap.set('n', '<leader>gta', '<cmd>GoTestAdd<CR>', { buffer = event.buf, desc = 'Create test' })
+    -- vim.keymap.set('n', '<leader>gta', '<cmd>GoTestAdd<CR>', { buffer = event.buf, desc = 'Create test' })
   end,
 })
 

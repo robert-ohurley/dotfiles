@@ -19,13 +19,19 @@ vim.opt.expandtab = true
 
 vim.opt.guicursor = 'n-v-i-c:block'
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 function _G.CustomFoldText()
   return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub('^%s*', '')
 end
 
-vim.opt.foldtext = 'v:lua.CustomFoldText()'
-vim.opt.foldmethod = 'manual'
-vim.opt.foldlevel = 99
+-- vim.opt.foldtext = 'v:lua.CustomFoldText()'
+-- vim.opt.foldmethod = 'manual'
+-- vim.opt.foldlevel = 99
 
 -- Make line numbers default
 vim.opt.number = true
