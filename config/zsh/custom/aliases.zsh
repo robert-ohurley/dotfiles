@@ -8,6 +8,7 @@ alias gd="git diff --staged --color-words"
 alias lg="lazygit"
 alias ld="lazydocker"
 alias nvm="fnm"
+alias servedir="python3 -m http.server 8000"
 
 #navigation
 #alias f is a function

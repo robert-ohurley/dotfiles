@@ -11,10 +11,11 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
+zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light softmoth/zsh-vim-mode
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -45,8 +46,12 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Custom
 source $HOME/.config/zsh/custom/path.zsh
 source $HOME/.config/zsh/custom/functions.zsh
+source $HOME/.config/zsh/custom/work_functions.zsh
 source $HOME/.config/zsh/custom/config.zsh
 source $HOME/.config/zsh/custom/aliases.zsh
+source $HOME/.config/zsh/custom/android.zsh
+
+
 
 export PYENV_ROOT="$HOME"/.pyenv
 export PATH="$PYENV_ROOT"/bin:"$PATH"
@@ -54,12 +59,15 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-eval "$(~/.local/bin/mise activate)"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # Shell integrations
 eval "$(starship init zsh)"
 
-# Ruby version manager
-# eval "$(frum init)"
-
-
+# pnpm
+export PNPM_HOME="/home/rob/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

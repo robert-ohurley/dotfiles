@@ -28,7 +28,8 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export FNM_PATH="$HOME/.local/share/fnm"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
-export GSTREAMER_LINUX_SDK_ROOT=/usr/lib/gstreamer-1.0-linux-x86-64-1.26
+# export GSTREAMER_LINUX_SDK_ROOT=/usr/lib/gstreamer-1.0-linux-x86-64-1.26
+export GSTREAMER_LINUX_SDK_ROOT=/home/rob/deps/gstreamer-1.0-android-universal-1.24.13/armv7
 
 
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -36,6 +37,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export PATH="/usr/bin/psql:$PATH"
 
+
+export GIT_AUTHOR_NAME="Robert Hurley"
+export GIT_AUTHOR_EMAIL="robert-hurley@hotmail.com.au"
+export GIT_COMMITTER_NAME="Robert Hurley"
+export GIT_COMMITTER_EMAIL="robert-hurley@hotmail.com.au"
 
 
 # Default Apps

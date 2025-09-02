@@ -11,9 +11,40 @@ mkbranch() {
 
   local suffix=$(IFS=- ; echo "${parts[*]}")
 
-  echo "vivi-${number}-${suffix}" | xclip -selection clipboard
+  branch_name="vivi-${number}-${suffix}"
+
+  echo "$branch_name" | xclip -selection clipboard
+  git checkout -b "$branch_name"
 }
- 
+
+
+mkprname() {
+  local branch_name prefix rest pr_title
+  branch_name=$(git branch --show-current)
+
+  prefix=$(echo "$branch_name" | sed -E 's/^(vivi-[0-9]+)-.*/\1/I' | tr '[:lower:]' '[:upper:]')
+  rest=$(echo "$branch_name" | sed -E "s/^vivi-[0-9]+-//I" | tr '-' ' ' | awk '{print tolower($0)}')
+  rest=$(echo "$rest" | awk '{$1=toupper(substr($1,1,1)) substr($1,2); print}')
+
+  pr_title="${prefix} ${rest}"
+
+  # Copy to clipboard only if a GUI clipboard is available
+  if command -v xclip >/dev/null 2>&1 && { [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; }; then
+    printf '%s' "$pr_title" | xclip -selection clipboard >/dev/null 2>&1 || true
+  fi
+
+  printf '%s' "$pr_title"
+}
+
+mkpr() {
+  local base="${1:-master}"
+  GH_EDITOR=true GH_PROMPT_DISABLED=1 gh pr create \
+    --base "$base" \
+    --head "$(git branch --show-current)" \
+    --title "$(mkprname)" \
+    --body "" \
+    --web
+}
 
 addPath() {
 	echo "export PATH=$1:\$PATH\n" >> $ZSH/custom/path.zsh
@@ -73,3 +104,8 @@ loadnvm() {
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
+
+update_homelab_repo() {
+  scp rojet@192.168.0.169:/opt/stacks/pihole/etc-pihole/custom.list "$HOME/dev/homelab/pihole/custom.list"
+  scp -r "rojet@192.168.0.5:/etc/nginx/sites-available/*" /home/rob/dev/homelab/nginx/sites-available
+}

@@ -9,3 +9,8 @@
 	rebase = false
 [core]
 	editor = nvim
+	excludesfile = /home/rob/dotfiles/config/git/.gitignore
+[safe]
+	directory = /work/app-canvas/vivi-bo
+	directory = /work/app-canvas/vivi-box
+	directory = *
