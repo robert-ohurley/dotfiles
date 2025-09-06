@@ -32,6 +32,8 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move highlighted lines do
 vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Insert new line below. Stay in normal mode' })
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Insert new line above. Stay in normal mode' })
 vim.keymap.set('n', '<leader>il', 'O<Esc>jo<Esc>k', { desc = '[I]nsert [L]ines above and below' })
+vim.keymap.set("n", "<leader>sc", ":source $MYVIMRC<CR>", { desc = "Reload config" })
+
 
 -- Folds --
 vim.keymap.set('n', 'zF', 'f{v%zf', { desc = 'Fold function block when cursor is on the method signature (or any {} block)})' })

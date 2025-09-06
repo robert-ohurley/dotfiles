@@ -14,3 +14,5 @@
 	directory = /work/app-canvas/vivi-bo
 	directory = /work/app-canvas/vivi-box
 	directory = *
+[rerere]
+	enabled = true
