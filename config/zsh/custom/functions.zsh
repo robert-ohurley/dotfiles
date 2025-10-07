@@ -66,7 +66,7 @@ t() {
 
 # Simple navigation
 f() {
-	selected_directory=$(find ~/ -maxdepth 5 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/.config/*' -o -path '*/node_modules/*' -o -path '*/yazi/*' -o -path '*/rustup/*' -o -path '*/.rbenv/*' -o -path '*/.docker/*' -o -path '*/.gem/*' -o -path '*/snap/*' -o -path '*/tmp/*' \) -prune -o -type d -print | fzf)
+	selected_directory=$(find ~/ -maxdepth 4 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/node_modules/*' -o -path '*/yazi/*' -o -path '*/rustup/*' -o -path '*/.rbenv/*' -o -path '*/.docker/*' -o -path '*/.gem/*' -o -path '*/snap/*' -o -path '*/tmp/*' \) -prune -o -type d -print | fzf)
 	cd "$selected_directory"
 }
 

@@ -78,8 +78,8 @@ function receiver_install_moonraker() {
 
 function receiver_install_goldfinger() {
     # Build install supervisor
-    ./gradlew :app-supervisor:assembleGoldfingerDebug;
-    ./gradlew :app-supervisor:installGoldFingerDebug;
+    # ./gradlew :app-supervisor:assembleGoldfingerDebug;
+    # ./gradlew :app-supervisor:installGoldFingerDebug;
 	# Build install canvas
 	./gradlew :app-canvas:assembleGoldfingerDebug;
 	./gradlew :app-canvas:installGoldfingerDebug;

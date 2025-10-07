@@ -4,10 +4,22 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
+local groups = {
+  "Normal",
+  "NormalNC",
+  "NormalFloat",
+  "SignColumn",
+  "EndOfBuffer",
+  "MsgArea",
+  "TelescopeNormal",
+  "NvimTreeNormal",
+}
+for _, group in ipairs(groups) do
+  vim.api.nvim_set_hl(1, group, { bg = "none" })
+end
+
 -- use for talon to detect the window
 vim.opt.title = true
--- Use file type to determine specific voice commands
--- Use 'neovim' For neovim specific voice mappings
 vim.opt.titlestring = [[nvim - %t]]
 vim.opt.tabline = ""
 
@@ -23,26 +35,6 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-
---Previous folding config
--- function _G.CustomFoldText()
---   return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub('^%s*', '')
--- end
-
--- vim.opt.foldtext = 'v:lua.CustomFoldText()'
--- vim.opt.foldmethod = 'manual'
--- vim.opt.foldlevel = 99
-
--- Change this to true if you know you have a Nerd Font
-local USE_NERD_FONT = false
-
--- pick an icon with fallback
-local function fold_icon()
-  if USE_NERD_FONT then
-    return ""  -- or "󰁂" / "" etc.
-  end
-  return ""     -- plain ASCII-ish fallback
-end
 
 function _G.custom_fold_text()
   local start  = vim.v.foldstart
