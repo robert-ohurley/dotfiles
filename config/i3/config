@@ -1,0 +1,114 @@
+##############################
+#  i3 convimuration
+##############################
+
+# === Remove borders ===
+new_window pixel 0
+new_float  pixel 0
+
+# === Leader Key ===
+set $mod Mod4
+
+# === Appearance ===
+font pango:JetBrainsMono Nerd Font Mono 10
+gaps inner 8
+gaps outer 0
+
+# === Volume up / down / mute (PipeWire) ===
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%-
+bindsym XF86AudioMute        exec --no-startup-id wpctl set-mute   @DEFAULT_SINK@ toggle
+
+# === Touchscreen mapping ===
+exec --no-startup-id xinput map-to-output "ELAN900C:00 04F3:2F59" eDP-1
+
+# === Startup my bois ===
+exec --no-startup-id ~/.config/i3/startup_place.sh
+
+
+# === Utilities, Compositor, Wallpaper ===
+exec --no-startup-id nm-applet
+exec --no-startup-id clipman
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+exec --no-startup-id feh --bg-fill "/home/rob/Pictures/Wallpapers/wallpaper.jpg"
+
+# === Window Focus (Vim-style) ===
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# === Move Containers ===
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# === Workspaces ===
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move container to numbered workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# === Splits ===
+bindsym $mod+v split v
+bindsym $mod+b split h
+bindsym $mod+underscore split h   # _ → horizontal
+bindsym $mod+bar       split v    # | → vertical
+
+# === Layout / Container ===
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+
+# === Multi-monitor helpers ===
+bindsym $mod+o focus output DP-2
+bindsym $mod+u focus output eDP-1
+
+# === Resize Mode (Vim-style) ===
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# === Essentials ===
+bindsym $mod+q kill
+bindsym $mod+Enter exec alacritty
+bindsym $mod+d exec rofi -show drun -theme nord
+bindsym Print exec flameshot gui
+bindsym $mod+Shift+x exec i3lock -c 000000
+bindsym $mod+Shift+s exec systemctl suspend  
+bindsym $mod+Shift+c reload                   
+bindsym $mod+Shift+r restart                
+bindsym $mod+Shift+q exec systemctl poweroff
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
+
+# Disable i3status bar
+bar {
+    status_command /bin/true
+}
+
+# Launch polybar instead
+exec_always --no-startup-id ~/.config/polybar/launch.sh
