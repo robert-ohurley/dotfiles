@@ -25,7 +25,6 @@ exec --no-startup-id xinput map-to-output "ELAN900C:00 04F3:2F59" eDP-1
 # === Startup my bois ===
 exec --no-startup-id ~/.config/i3/startup_place.sh
 
-
 # === Utilities, Compositor, Wallpaper ===
 exec --no-startup-id nm-applet
 exec --no-startup-id clipman
@@ -105,10 +104,5 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q exec systemctl poweroff
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
 
-# Disable i3status bar
-bar {
-    status_command /bin/true
-}
-
-# Launch polybar instead
+# Launch polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
