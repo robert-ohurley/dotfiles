@@ -19,7 +19,7 @@ zinit light softmoth/zsh-vim-mode
 
 # Load completions
 autoload -Uz compinit && compinit
-
+export NGROK_URL="unthreateningly-scrubbable-lillia.ngrok-free.dev"
 # History
 HISTSIZE=5000
 HISTFILE=$HOME/.config/zsh/custom/.zsh_history
@@ -71,3 +71,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH=$PATH:$HOME/.maestro/bin
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

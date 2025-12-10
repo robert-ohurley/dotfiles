@@ -1,5 +1,4 @@
 #git
-alias gupdate='git commit -m "update"'
 alias gl='git log --oneline --graph'
 alias gp='git pull origin master'
 alias gs='git status'
@@ -12,13 +11,16 @@ alias servedir="python3 -m http.server 8000"
 
 #navigation
 #alias f is a function
-
+alias b="cd /home/rob/dev/vivi-local-cloud/vivi-backend/"
+alias p="cd /home/rob/dev/vivi-local-cloud/vivi-portal"
+# alias b="cd /home/rob/dev/backups/__/__/__/vivi-local-cloud/vivi-backend/"
+# alias p="cd /home/rob/dev/backups/__/__/__/vivi-local-cloud/vivi-portal/"
+alias lcu="cd /home/rob/dev/vivi-local-cloud && dcu"
+ 
 #misc
 alias c='clear'
 alias ls='ls -l'
 alias uu='sudo apt update && sudo apt upgrade'
-alias b='btop'
-alias s3='sqlite3'
 alias l='eza --icons -F -H --group-directories-first -1'
 
 #nvim

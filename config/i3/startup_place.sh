@@ -11,29 +11,36 @@ need i3-msg
 need xrandr
 
 INT="eDP-1"
-# Preferred outputs: DP-2 -> HDMI-1 -> INT
-if xrandr | grep -q "^DP-2 connected"; then
-  TARGET="DP-2"
-elif xrandr | grep -q "^HDMI-1 connected"; then
-  TARGET="HDMI-1"
-else
-  TARGET="$INT"
-fi
-echo "TARGET=$TARGET"
+EXT="HDMI-1"
 
-# Helper: pin a workspace to TARGET (creates it if needed)
+# Detect HDMI connection
+if xrandr | grep -q "^HDMI-1 connected"; then
+  echo "External monitor detected: HDMI-1"
+  EXT="HDMI-1"
+else
+  echo "No external monitor found, using laptop only"
+  EXT="$INT"
+fi
+
+# Helper to pin workspace to specific output
 pin_ws() {
   local ws="$1"
-  i3-msg "workspace number ${ws}; move workspace to output ${TARGET}" >/dev/null
+  local out="$2"
+  i3-msg "workspace number ${ws}; move workspace to output ${out}" >/dev/null
 }
 
-# 1) Pin WS 1..3 and end on 1
-pin_ws 1
-pin_ws 2
-pin_ws 3
+# === Assign workspaces ===
+# Workspaces 1–3 go to HDMI (or fallback to laptop)
+# Workspace 4 stays on laptop
+pin_ws 1 "$EXT"
+pin_ws 2 "$EXT"
+pin_ws 3 "$EXT"
+pin_ws 4 "$INT"
+
+# Focus back to workspace 1
 i3-msg 'workspace number 1' >/dev/null
 
-# 2) Add swallow placeholders (minimal cons) to each WS
+# === Swallow placeholders ===
 mk_con_json() { printf '%s' "{ \"type\":\"con\", \"nodes\":[{ \"type\":\"con\", \"swallows\": $1 }] }"; }
 
 tmp1=$(mktemp); mk_con_json '[{"class":"^Alacritty$"},{"instance":"(?i)^alacritty$"}]' >"$tmp1"
@@ -44,10 +51,10 @@ i3-msg "workspace number 1; append_layout $tmp1" >/dev/null
 i3-msg "workspace number 2; append_layout $tmp2" >/dev/null
 i3-msg "workspace number 3; append_layout $tmp3" >/dev/null
 
-# 3) Launch apps (once)
+# === Launch apps (once) ===
 (alacritty &) ; (brave-browser &) ; (slack &)
 
-# 4) Poll and place windows if any didn't swallow
+# === Poll and move windows if not swallowed ===
 deadline=$(( $(date +%s) + 10 ))
 declare -A want=( ["Alacritty"]=1 ["Brave-browser"]=2 ["Brave"]=2 ["Slack"]=3 )
 declare -A placed=()
@@ -78,10 +85,12 @@ while [ "$(date +%s)" -lt "$deadline" ]; do
   sleep 0.2
 done
 
-# 5) Re-pin WS 1..3 to TARGET (just in case) and finish on WS1
-pin_ws 1; pin_ws 2; pin_ws 3
+# === Re-pin and cleanup ===
+pin_ws 1 "$EXT"
+pin_ws 2 "$EXT"
+pin_ws 3 "$EXT"
+pin_ws 4 "$INT"
 i3-msg 'workspace number 1' >/dev/null
 
-# Cleanup
 rm -f "$tmp1" "$tmp2" "$tmp3"
 echo "Done."

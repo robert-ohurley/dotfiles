@@ -1,4 +1,4 @@
-
+fixpostgres() {
   # own data directory
   sudo chown -R 999:999 /home/rob/dev/vivi-local-cloud/tmp/db/16.6
   sudo find /home/rob/dev/vivi-local-cloud/tmp/db/16.6 -type d -exec chmod 700 {} \;
@@ -139,4 +139,26 @@ goldfinger_reboot() {
 set -e
 reboot
 EOF
+}
+
+
+gold() {
+  ./gradlew --stop
+  ./gradlew clean
+
+	# Build install supervisor
+  ./gradlew :app-supervisor:assembleGoldfingerDebug;
+  --no-build-cache --refresh-dependencies --rerun-tasks --stacktrace
+
+  ./gradlew :app-supervisor:installGoldFingerDebug;
+  --no-build-cache --refresh-dependencies --rerun-tasks --stacktrace
+
+	# Build install canvas
+	./gradlew :app-canvas:assembleGoldfingerDebug;
+  --no-build-cache --refresh-dependencies --rerun-tasks --stacktrace
+
+	./gradlew :app-canvas:installGoldfingerDebug;
+  --no-build-cache --refresh-dependencies --rerun-tasks --stacktrace
+
+    receiver_restart;
 }

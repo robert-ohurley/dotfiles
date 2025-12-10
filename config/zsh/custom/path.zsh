@@ -18,6 +18,8 @@ export DOTNET_CLI_HOME=$XDG_DATA_HOME/dotnet
 export GNUPGHOME=$XDG_DATA_HOME/gnupg     	#might cause problems
 export GOPATH="$XDG_DATA_HOME"/go
 export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+export JAVA_HOME="$HOME/.sdkman/candidates/java/25.0.1-tem"
+
 export HISTFILE=$XDG_STATE_HOME/zsh/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export NVM_DIR=$XDG_CONFIG_HOME/nvm
@@ -28,8 +30,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export FNM_PATH="$HOME/.local/share/fnm"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
-# export GSTREAMER_LINUX_SDK_ROOT=/usr/lib/gstreamer-1.0-linux-x86-64-1.26
-export GSTREAMER_LINUX_SDK_ROOT=/home/rob/deps/gstreamer-1.0-android-universal-1.24.13/armv7
+export GSTREAMER_LINUX_SDK_ROOT="/usr/lib/gstreamer-1.0-linux-x86-64-1.26"
 
 
 export PATH="$HOME/.rbenv/bin:$PATH"
