@@ -122,3 +122,57 @@ update_nginx() {
 update_pihole() {
   scp /home/rob/dev/homelab/pihole/custom.list root@192.168.0.169:/opt/stacks/pihole/etc-pihole/custom.list
 }
+
+tvivi() {
+  local base="/home/rob/dev/vivi-local-cloud"
+  local p_backend="/home/rob/dev/vivi-local-cloud/vivi-backend"
+  local p_portal="/home/rob/dev/vivi-local-cloud/vivi-portal"
+  local p_client="/home/rob/dev/vivi-client"
+
+  # 1) Prompt first
+  echo "Pick a project:"
+  select choice in "$p_backend" "$p_portal" "$p_client"; do
+    [[ -n "${choice:-}" ]] && break
+    echo "Invalid selection. Try again."
+  done
+
+  # 2) cd there, run docker compose up (wait to finish)
+  cd "$base" || { echo "Could not cd to $base"; return 1; }
+  if type dcu >/dev/null 2>&1; then
+    dcu            # run your alias in the foreground
+  else
+    # Fallback if alias isn't available in this shell
+    docker compose up -d
+  fi
+
+  # Work out order: chosen first, then the other two
+  local dirs names
+  case "$choice" in
+    "$p_backend")
+      dirs=("$p_backend" "$p_portal" "$p_client")
+      names=("vivi-backend" "vivi-portal" "vivi-client")
+      ;;
+    "$p_portal")
+      dirs=("$p_portal" "$p_backend" "$p_client")
+      names=("vivi-portal" "vivi-backend" "vivi-client")
+      ;;
+    "$p_client")
+      dirs=("$p_client" "$p_backend" "$p_portal")
+      names=("vivi-client" "vivi-backend" "vivi-portal")
+      ;;
+  esac
+
+  # 3) Create clean tmux session and windows
+  local sess="vivi"
+  tmux has-session -t "$sess" 2>/dev/null && tmux kill-session -t "$sess"
+
+  tmux new-session -d -s "$sess" -n "${names[0]}" -c "${dirs[0]}"
+  tmux new-window  -t "$sess":2 -n "${names[1]}" -c "${dirs[1]}"
+  tmux new-window  -t "$sess":3 -n "${names[2]}" -c "${dirs[2]}"
+
+  tmux select-window -t "$sess":1
+  tmux attach -t "$sess"
+}
+
+alias tv='tvivi'
+
