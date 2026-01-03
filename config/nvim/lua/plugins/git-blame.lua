@@ -15,9 +15,9 @@ return {
     opts = {
         -- your configuration comes here
         -- for example
-        enabled = false,  -- if you want to enable the plugin
+        enabled = true,  -- if you want to enable the plugin
         date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
-        message_template = (" <summary> • <date> • <author> • <<sha>>").sub(1, max_len), -- template for the blame message, check the Message template section for more options
-        virtual_text_column = vim.api.nvim_win_get_width(0) - 50 + 1,  -- virtual text start column, check. Start virtual text at column section for more options
+        message_template = truncated_message, -- template for the blame message, check the Message template section for more options
+        virtual_text_column = nil,  -- virtual text start column, nil means it will be calculated dynamically
     },
 }
