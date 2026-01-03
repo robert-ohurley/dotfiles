@@ -60,7 +60,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file",       "<cmd> silent! lua require('telescope.builtin').find_files({hidden = true})<cr>"),
       dashboard.button("n", " " .. " New file",        "<cmd> ene <BAR> startinsert <cr>"),
-      dashboard.button("r", " " .. " Recent files",    "<cmd> Telescope oldfiles <cr>"),
+      -- dashboard.button("r", " " .. " Recent files",    "<cmd> Telescope oldfiles <cr>"),
       dashboard.button("w", " " .. " Find text",       "<cmd> Telescope live_grep <cr>"),
     --dashboard.button("Z", " " .. " Open Directories", "<cmd> lua require('telescope').extensions.zoxide.list() <cr>"),
     --dashboard.button("c", " " .. " Config",          "<cmd> lua require('../../rojet/').telescope.config_files()() <cr>"),

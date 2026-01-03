@@ -76,11 +76,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
     vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
     vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = '[F]ind [G]it Files (Tracked by git)' })
-    vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
+    -- vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
+    vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = '[F]ind [S]elect Telescope' })
     vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = '[F]ind by [W]ord with Grep' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
-    vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
+    -- vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[F]ind existing buffers' })
 
     -- Slightly advanced example of overriding default behavior and theme
@@ -103,7 +104,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Shortcut for navigating to and searching my dotfiles
     vim.keymap.set('n', '<leader>fc', function()
-      builtin.find_files { cwd = '/home/rojetsavage/dotfiles/', hidden = true }
+      builtin.find_files { cwd = '/home/rob/dotfiles/', hidden = true }
     end, { desc = '[F]ind [C]onfig files' })
 
     vim.keymap.set('n', '<leader>fn', function()

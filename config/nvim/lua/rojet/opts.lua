@@ -17,13 +17,64 @@ vim.opt.expandtab = true
 
 vim.opt.guicursor = 'n-v-i-c:block'
 
-function _G.CustomFoldText()
-  return vim.fn.getline(vim.v.foldstart) .. ' ... ' .. vim.fn.getline(vim.v.foldend):gsub('^%s*', '')
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+function _G.custom_fold_text()
+  local start  = vim.v.foldstart
+  local finish = vim.v.foldend
+  local line   = vim.fn.getline(start)
+
+  -- capture indentation separately
+  local indent = line:match("^(%s*)") or ""
+  local first  = line:gsub("^%s+", ""):gsub("%s+$", "")
+
+  local lines  = finish - start + 1
+  local suffix = ("  ↧ %d lines "):format(lines)
+
+  local win_w    = vim.api.nvim_win_get_width(0)
+  local suffix_w = vim.fn.strdisplaywidth(suffix)
+  local indent_w = vim.fn.strdisplaywidth(indent)
+  local first_w  = vim.fn.strdisplaywidth(first)
+
+  -- space available for first part after indent + suffix
+  local max_first_w = math.max(1, win_w - indent_w - suffix_w - 1)
+
+  if first_w > max_first_w then
+    local cut_to = math.max(1, max_first_w - 1)
+    local idx, acc = 1, 0
+    while idx <= #first and acc < cut_to do
+      local ch = first:sub(idx, idx)
+      local w = vim.fn.strdisplaywidth(ch)
+      if acc + w > cut_to then break end
+      acc = acc + w
+      idx = idx + 1
+    end
+    first = first:sub(1, idx - 1) .. "…"
+    first_w = vim.fn.strdisplaywidth(first)
+  end
+
+  -- padding between first part and suffix
+  local pad = math.max(1, win_w - indent_w - first_w - suffix_w)
+  return indent .. first .. string.rep(" ", pad) .. suffix
 end
 
-vim.opt.foldtext = 'v:lua.CustomFoldText()'
-vim.opt.foldmethod = 'manual'
-vim.opt.foldlevel = 99
+vim.opt.foldtext = "v:lua.custom_fold_text()"
+
+-- optional: make folds look nicer in the gutter
+vim.opt.fillchars:append({ fold = " ", foldopen = "", foldclose = "", foldsep = " " })
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
+
+vim.opt.foldenable = true
+vim.opt.foldlevel  = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldcolumn = "1"           -- gutter showing folds idk about this yet
+vim.opt.foldtext = "v:lua.custom_fold_text()"
 
 -- Make line numbers default
 vim.opt.number = true
@@ -42,7 +93,7 @@ vim.opt.termguicolors = true
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
-vim.opt.clipboard = 'unnamedplus'
+-- vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -79,7 +130,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 14
+vim.opt.scrolloff = 5
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
