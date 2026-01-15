@@ -80,6 +80,7 @@ bindsym $mod+Shift+space floating toggle
 # === Multi-monitor helpers ===
 bindsym $mod+o focus output HDMI-1
 bindsym $mod+u focus output eDP-1
+bindsym $mod+Shift+m exec --no-startup-id ~/.config/i3/move-all-to-screen.sh
 
 # === Workspace to monitor mapping ===
 workspace "1" output HDMI-1
