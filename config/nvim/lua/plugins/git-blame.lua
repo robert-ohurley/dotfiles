@@ -15,7 +15,7 @@ return {
     opts = {
         -- your configuration comes here
         -- for example
-        enabled = true,  -- if you want to enable the plugin
+        enabled = false,  -- if you want to enable the plugin
         date_format = "%m-%d-%Y %H:%M:%S", -- template for the date, check Date format section for more options
         message_template = truncated_message, -- template for the blame message, check the Message template section for more options
         virtual_text_column = nil,  -- virtual text start column, nil means it will be calculated dynamically
