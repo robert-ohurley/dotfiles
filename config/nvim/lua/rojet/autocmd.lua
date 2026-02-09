@@ -10,6 +10,36 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   desc = "Reload config on save",
 })
 
+-- Run RuboCop auto-correct on save for Ruby files
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "*.rb", "*.rake", "Gemfile", "Rakefile", "*.ru" },
+  callback = function()
+    local filepath = vim.fn.expand("%:p")
+    -- Check if we're in a project with bundler (has Gemfile)
+    local project_root = vim.fn.finddir(".git", vim.fn.expand("%:p:h") .. ";")
+    if project_root ~= "" then
+      project_root = vim.fn.fnamemodify(project_root, ":h")
+    else
+      project_root = vim.fn.expand("%:p:h")
+    end
+    
+    local gemfile = project_root .. "/Gemfile"
+    local cmd
+    if vim.fn.filereadable(gemfile) == 1 then
+      -- Use bundle exec if Gemfile exists
+      cmd = string.format("cd %s && bundle exec rubocop -a %s", vim.fn.shellescape(project_root), vim.fn.shellescape(filepath))
+    else
+      -- Use rubocop directly
+      cmd = string.format("rubocop -a %s", vim.fn.shellescape(filepath))
+    end
+    
+    vim.fn.system(cmd)
+    -- Check if file was modified and reload if needed
+    vim.cmd("checktime")
+  end,
+  desc = "Run RuboCop auto-correct on save",
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
