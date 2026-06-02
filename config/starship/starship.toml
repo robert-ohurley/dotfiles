@@ -1,10 +1,17 @@
-format = """rob@vivi $character$directory"""
-right_format = """$hostname$localip$go$python$nodejs"""
+format = """ [rob@vivi](bold purple) $directory$character"""
+right_format = """$hostname$localip$go$python"""
 add_newline = false
+palette = "tokyonight"
 
 [directory]
 truncation_length = 2
 truncation_symbol = '../'
+style = "bold blue"
+
+[character]
+success_symbol = "[❯](bold pink)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
 
 [os]
 disabled = true
@@ -48,12 +55,6 @@ symbol = " "
 [memory_usage]
 symbol = "󰍛 "
 
-[nodejs]
-symbol = " "
-format = " [ Node $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
-
 [os.symbols]
 Ubuntu = " "
 
@@ -66,3 +67,16 @@ format = " [  $version$pyenv_prefix](bold green) "
 
 [rust]
 symbol = " "
+
+# >>> theme palette >>> (managed by ~/.config/theme/build.sh — do not edit by hand)
+[palettes.tokyonight]
+purple = "#c0a7f5"
+pink   = "#f5a3c7"
+blue   = "#82aaff"
+green  = "#c3e88d"
+yellow = "#ffc777"
+red    = "#ff757f"
+cyan   = "#86e1fc"
+fg     = "#c8d3f5"
+muted  = "#545c7e"
+# <<< theme palette <<<
