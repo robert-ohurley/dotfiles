@@ -1,6 +1,7 @@
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -38,39 +39,70 @@ return {
 
       -- -- Simple and easy statusline.
       local statusline = require 'mini.statusline'
+      -- Default layout (filename left-aligned). The section overrides below
+      -- drop git/diff/lsp/size/location, so the bar stays minimal.
       statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- No line:char location section.
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_lsp = function()
-        local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
-        local clients = vim.lsp.get_clients()
-
-        if next(clients) == nil then
-          --no active lsp
-          return ''
-        end
-
-        for _, client in ipairs(clients) do
-          local filetypes = client.config.filetypes
-          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
-          end
-        end
         return ''
       end
 
+      -- File info without the file size (keep filetype + encoding).
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_fileinfo = function(args)
+        local ft = vim.bo.filetype
+        if ft == '' then
+          return ''
+        end
+        if statusline.is_truncated(args.trunc_width) then
+          return ft
+        end
+        local enc = vim.bo.fileencoding ~= '' and vim.bo.fileencoding or vim.bo.encoding
+        return string.format('%s %s', ft, enc)
+      end
+
+      -- No LSP server name in the statusline.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_lsp = function()
+        return ''
+      end
+
+      -- No git branch in the statusline.
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_git = function()
-        local branch = vim.fn.system 'git rev-parse --abbrev-ref HEAD'
-        if #branch < 30 then
-          return branch:gsub('\n', ''):gsub('%s+$', '')
-        else
-          return 'x Git'
+        return ''
+      end
+
+      -- No git diff (+/~/-) section or its icon.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_diff = function()
+        return ''
+      end
+
+      -- Diagnostics as full words ("Errors: 3  Warnings: 1") instead of E/W/I/H.
+      -- Only non-zero levels are shown.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_diagnostics = function(args)
+        if statusline.is_truncated(args.trunc_width) then
+          return ''
         end
+        local S = vim.diagnostic.severity
+        local counts = vim.diagnostic.count(0)
+        local labels = {
+          { S.ERROR, 'Errors' },
+          { S.WARN, 'Warnings' },
+          { S.INFO, 'Info' },
+          { S.HINT, 'Hints' },
+        }
+        local parts = {}
+        for _, l in ipairs(labels) do
+          local n = counts[l[1]] or 0
+          if n > 0 then
+            table.insert(parts, string.format('%s: %d', l[2], n))
+          end
+        end
+        return table.concat(parts, '  ')
       end
     end,
   },
