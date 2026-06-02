@@ -3,11 +3,14 @@
 ##############################
 
 # === Remove borders ===
-new_window pixel 0
-new_float  pixel 0
+new_window pixel 2
+new_float  pixel 2
 
 # === Leader Key ===
 set $mod Mod4
+
+# === Colors (generated from the central palette by ~/.config/theme/build.sh) ===
+include ~/.config/i3/colors.conf
 
 # === Appearance ===
 font pango:JetBrainsMono Nerd Font Mono 10
@@ -23,12 +26,14 @@ bindsym XF86AudioMute        exec --no-startup-id wpctl set-mute   @DEFAULT_SINK
 exec --no-startup-id xinput map-to-output "ELAN900C:00 04F3:2F59" eDP-1
 
 # === Startup ===
-exec --no-startup-id ~/.config/i3/startup_place.sh
+exec_always --no-startup-id ~/.config/i3/startup_place.sh
 
 # === Utilities, Compositor, Wallpaper ===
 exec --no-startup-id nm-applet
 exec --no-startup-id clipman
-exec --no-startup-id picom --config ~/.config/picom/picom.conf
+# Disabled: rounding caused workspace-switch lag and we don't want the
+# compositor's overhead. No transparency/rounding -> no picom.
+# exec --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id feh --bg-fill "/home/rob/Pictures/Wallpapers/wallpaper.jpg"
 
 # === Window Focus (Vim-style) ===
@@ -83,10 +88,17 @@ bindsym $mod+u focus output eDP-1
 bindsym $mod+Shift+m exec --no-startup-id ~/.config/i3/move-all-to-screen.sh
 
 # === Workspace to monitor mapping ===
-workspace "1" output HDMI-1
-workspace "2" output HDMI-1
-workspace "3" output HDMI-1
-workspace "4" output eDP-1
+# 1-3 prefer the external (HDMI or DP hub), falling back to the laptop when no
+# external is connected. 4-6 always live on the laptop. i3 applies these when a
+# workspace is created and collapses an output's workspaces onto eDP-1 when it
+# disconnects. It does NOT move them back on replug -- the autorandr postswitch
+# hook handles that.
+workspace 1 output HDMI-1 DP-1 eDP-1
+workspace 2 output HDMI-1 DP-1 eDP-1
+workspace 3 output HDMI-1 DP-1 eDP-1
+workspace 4 output eDP-1
+workspace 5 output eDP-1
+workspace 6 output eDP-1
 
 # === Resize Mode (Vim-style) ===
 mode "resize" {
@@ -101,15 +113,18 @@ bindsym $mod+r mode "resize"
 
 # === Essentials ===
 bindsym $mod+q kill
-bindsym $mod+Enter exec alacritty
-bindsym $mod+d exec rofi -show drun -theme nord
+bindsym $mod+d exec rofi -show drun -theme ~/.config/rofi/theme.rasi
 bindsym Print exec flameshot gui
-bindsym $mod+Shift+x exec i3lock -c 000000
-bindsym $mod+Shift+s exec systemctl suspend  
+bindsym $mod+Shift+x exec i3lock -c $lockcolor
 bindsym $mod+Shift+c reload                   
 bindsym $mod+Shift+r restart                
 bindsym $mod+Shift+q exec systemctl poweroff
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
+
+# Stop snoozin'
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
 
 # === Launch Polybar ===
 exec_always --no-startup-id ~/.config/polybar/launch.sh
