@@ -1,19 +1,13 @@
 return {
-  dir = "/home/rob/dev/compass.nvim",
-  name = "compass",
-  config = function()
-    require("compass").setup({
-      history = {
-        mode = "graph",
-      },
-      ui = {
-        chooser = "ui.select",
-      },
-      debug = false,
-    })
-
-    vim.keymap.set('n', '<C-u>', '<cmd>CompassBack<CR>', { desc = '[C]ompass [B]ack' })
-    vim.keymap.set('n', '<C-i>', '<cmd>CompassForward<CR>', { desc = '[C]ompass [F]orward' })
-    vim.keymap.set('n', '<C-o>', '<cmd>CompassDebugDump<CR>', { desc = '[C]ompass [D]ebug dump' })
-  end,
+  "robert-ohurley/compass.nvim",
+  keys = {
+    { '<C-j>', '<cmd>CompassBack<CR>', desc = 'Compass Back' },
+    { '<C-k>', '<cmd>CompassForward<CR>', desc = 'Compass Forward' },
+    { '<C-l>', '<cmd>CompassDebugDump<CR>', desc = 'Compass Debug Info' },
+  },
+  opts = {
+    history = {
+      mode = "graph", -- "graph" | "linear"
+    },
+  },
 }

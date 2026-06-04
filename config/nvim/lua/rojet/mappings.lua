@@ -1,5 +1,5 @@
 -- Save and Close --
-vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite [File]' })
+vim.keymap.set('n', '<leader>wf', '<cmd>w<CR>', { desc = '[W]rite [File]' })
 vim.keymap.set('n', '<leader>qa', '<cmd>qa!<CR>', { desc = '[Quit] [A]ll [F]iles' })
 vim.keymap.set('n', '<leader>qf', '<cmd>q!<CR>', { desc = '[Quit] [F]iles' })
 
@@ -23,7 +23,7 @@ vim.keymap.set('n', '<leader>dr', '<cmd> DapContinue <CR>', { desc = '[d]ebugger
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Remove highlighted search' })
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('n', '<leader>cs', '<cmd>Telescope colorscheme<CR>')
-vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>fm', function() vim.lsp.buf.format() end)
 vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<CR>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move highlighted lines up' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move highlighted lines down' })
@@ -31,6 +31,14 @@ vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Insert new line below. Stay
 vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Insert new line above. Stay in normal mode' })
 vim.keymap.set('n', '<leader>il', 'O<Esc>jo<Esc>k', { desc = '[I]nsert [L]ines above and below' })
 vim.keymap.set("n", "<leader>sc", ":source $MYVIMRC<CR>", { desc = "Reload config" })
+vim.keymap.set('n', '<leader>rwf', ':%s/\\<<C-r><C-w>\\>//g<Left><Left>', { desc = '[R]eplace [W]ord in [F]ile' })
+vim.keymap.set('n', '<leader>rwg', function()
+  local word = vim.fn.expand('<cword>')
+  local rep = vim.fn.input('Replace "' .. word .. '" with: ')
+  if rep == '' then return end
+  vim.cmd('grep ' .. word)
+  vim.cmd('cfdo %s/\\<' .. word .. '\\>/' .. rep .. '/g | update')
+end, { desc = '[R]eplace [W]ord [G]lobally' })
 
 
 -- Go --
@@ -51,7 +59,7 @@ vim.keymap.set('n', '<leader>lr', '<cmd>LspRestart<CR>', { desc = 'Restart LSP' 
 -- Diagnostic Keymaps --
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
-vim.keymap.set('n', '<leader>d', vim.lsp.buf.code_action, { desc = 'Show available code actions' })
+vim.keymap.set('n', '<leader>d', function() vim.lsp.buf.code_action() end, { desc = 'Show available code actions' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
 vim.keymap.set("n", "<leader>cl", function()
   local word = vim.fn.expand("<cWORD>")
@@ -69,7 +77,7 @@ vim.keymap.set('n', '<leader>cn', ':cnext<CR>', { desc = 'Next item on quickfix 
 vim.keymap.set('n', '<leader>cp', ':cprev<CR>', { desc = 'Previous item on quickfix list' })
 
 -- Project Navigation --
-vim.keymap.set('n', '<leader>ft', vim.cmd.NvimTreeToggle, { desc = 'View [f]ile [t]ree' })
+-- nvim-tree keybind is defined in the plugin spec for lazy-loading
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })

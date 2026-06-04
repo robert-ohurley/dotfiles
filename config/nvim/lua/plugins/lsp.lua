@@ -1,6 +1,7 @@
 return {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -68,6 +69,13 @@ return {
         },
         ts_ls = {
           filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+          on_attach = function(client, bufnr)
+            -- Disable ts_ls for glimmer files (Glint handles these)
+            local ft = vim.bo[bufnr].filetype
+            if ft == 'typescript.glimmer' or ft == 'javascript.glimmer' then
+              client.stop()
+            end
+          end,
         },
         lua_ls = {
           settings = {
@@ -90,7 +98,6 @@ return {
       vim.list_extend(ensure_installed, {
         'bashls',
         'clangd',
-        'codelldb',
         'eslint-lsp',
         'gopls',
         'html',
@@ -118,6 +125,16 @@ return {
           end,
         },
       }
+
+      -- Glint LSP for Ember/Glimmer (.gts/.gjs) — not Mason-managed,
+      -- requires @glint/core installed in the project
+      vim.lsp.config('glint', {
+        cmd = { 'glint-language-server' },
+        filetypes = { 'handlebars', 'typescript.glimmer', 'javascript.glimmer' },
+        root_markers = { 'ember-cli-build.js', '.glintrc.yml', '.glintrc', '.glintrc.json' },
+        capabilities = capabilities,
+      })
+      vim.lsp.enable('glint')
     end,
   },
 }

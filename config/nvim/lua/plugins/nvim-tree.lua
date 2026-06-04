@@ -1,10 +1,11 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  lazy = false,
+  cmd = { 'NvimTreeToggle', 'NvimTreeOpen', 'NvimTreeFocus' },
+  keys = { { '<leader>ft', vim.cmd.NvimTreeToggle, desc = 'View [f]ile [t]ree' } },
   config = function()
     require("nvim-tree").setup({
       view = {
-        width = 30,
+        width = 50,
       },
 
       --opens nvim tree wrt current buffer

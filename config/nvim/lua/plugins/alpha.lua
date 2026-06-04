@@ -51,7 +51,7 @@ return {
       },
       {
         type = "text",
-        val = "Don't cry. It's a waste of good suffering.",
+        val = "No tears please. It's a waste of good suffering.",
         opts = { hl = "NeovimDashboardUsername", shrink_margin = false, position = "center" },
       },
     }

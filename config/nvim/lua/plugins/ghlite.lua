@@ -37,11 +37,11 @@ return  {
       })
     end,
     keys = {
-      { '<leader>gp', ':GHLitePRSelect<cr>',        silent = true, desc = 'PR Select' },
-      { '<leader>gv', ':GHLitePRView<cr>',          silent = true, desc = 'PR View' },
-      { '<leader>gd', ':GHLitePRDiff<cr>',          silent = true, desc = 'PR Diff' },
-      { '<leader>gl', ':GHLitePRDiffview<cr>',      silent = true, desc = 'PR Diffview' },
-      { '<leader>gc', ':GHLitePRCheckout<cr>',      silent = true, desc = 'PR Checkout' },
-      { '<leader>gu', ':GHLitePRLoadComments<cr>',  silent = true, desc = 'PR Load Comments' },
+      -- { '<leader>gp', ':GHLitePRSelect<cr>',        silent = true, desc = 'PR Select' },
+      -- { '<leader>gv', ':GHLitePRView<cr>',          silent = true, desc = 'PR View' },
+      -- { '<leader>gd', ':GHLitePRDiff<cr>',          silent = true, desc = 'PR Diff' },
+      -- { '<leader>gl', ':GHLitePRDiffview<cr>',      silent = true, desc = 'PR Diffview' },
+      -- { '<leader>gc', ':GHLitePRCheckout<cr>',      silent = true, desc = 'PR Checkout' },
+      -- { '<leader>gu', ':GHLitePRLoadComments<cr>',  silent = true, desc = 'PR Load Comments' },
     }
   } 
