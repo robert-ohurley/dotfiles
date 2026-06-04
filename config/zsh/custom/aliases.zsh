@@ -4,18 +4,17 @@ alias gp='git pull origin master'
 alias gs='git status'
 alias gcm='git checkout master'
 alias gd="git diff --staged --color-words"
+alias gcb='git fetch && git branch -a --no-color | sed "s/^[* ]*//" | sed "s|remotes/origin/||" | sort -u | fzf | xargs git checkout'
 alias lg="lazygit"
 alias ld="lazydocker"
 alias nvm="fnm"
-alias servedir="python3 -m http.server 8000"
+alias servedir="hostname -I | awk '{print \$1}' && python3 -m http.server 8000"
 
 #navigation
 #alias f is a function
-alias b="cd /home/rob/dev/vivi-local-cloud/vivi-backend/"
-alias p="cd /home/rob/dev/vivi-local-cloud/vivi-portal"
-# alias b="cd /home/rob/dev/backups/__/__/__/vivi-local-cloud/vivi-backend/"
-# alias p="cd /home/rob/dev/backups/__/__/__/vivi-local-cloud/vivi-portal/"
-alias lcu="cd /home/rob/dev/vivi-local-cloud && dcu"
+alias b="cd /home/rob/dev/cloud_for_migrations/vivi-local-cloud/vivi-backend/"
+alias p="cd /home/rob/dev/cloud_for_migrations/vivi-local-cloud/vivi-portal"
+alias lcu="cd /home/rob/dev/cloud_for_migrations/vivi-local-cloud/ && dcu"
  
 #misc
 alias c='clear'
@@ -43,6 +42,7 @@ alias dcu='docker compose up -d'
 alias dps='docker ps'
 alias dk='docker stop $(docker ps -q) && docker rm $(docker ps -q)'
 alias dstop='docker stop $(docker ps -q)'
+alias dessentials='cd /home/rob/dev/cloud_for_migrations/vivi-local-cloud && docker compose up -d postgres redis vivi-backend nginx vivi-portal'
 
 #prevent generation of dotfiles in $HOME - tidy up
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" # Alias wget to use a custom hsts cache file location
@@ -51,3 +51,6 @@ alias nvidia-settings=nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/setting
 #sourcing
 alias szsh='source $XDG_CONFIG_HOME/zsh/.zshrc'
 alias stmux='tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf'
+
+# always practice safe dependency resolutions
+# alias npx='pnx'

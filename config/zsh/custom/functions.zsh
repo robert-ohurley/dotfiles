@@ -46,6 +46,36 @@ mkpr() {
     --web
 }
 
+# raisepr [head] [into] <base>
+#   raisepr main                  # current branch -> main
+#   raisepr feature-x main
+#   raisepr feature-x into main
+raisepr() {
+  if [[ $# -lt 1 ]]; then
+    echo "usage: raisepr [head] [into] <base>" >&2
+    return 1
+  fi
+
+  local head base
+  if [[ $# -eq 1 ]]; then
+    head="$(git branch --show-current)"
+    base="$1"
+  elif [[ $# -ge 3 && "$2" == "into" ]]; then
+    head="$1"
+    base="$3"
+  else
+    head="$1"
+    base="$2"
+  fi
+
+  GH_EDITOR=true GH_PROMPT_DISABLED=1 gh pr create \
+    --base "$base" \
+    --head "$head" \
+    --title "Merge $head into $base" \
+    --body "" \
+    --web
+}
+
 addPath() {
 	echo "export PATH=$1:\$PATH\n" >> $ZSH/custom/path.zsh
 }
@@ -66,8 +96,29 @@ t() {
 
 # Simple navigation
 f() {
-	selected_directory=$(find ~/ -maxdepth 4 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/node_modules/*' -o -path '*/yazi/*' -o -path '*/rustup/*' -o -path '*/.rbenv/*' -o -path '*/.docker/*' -o -path '*/.gem/*' -o -path '*/snap/*' -o -path '*/tmp/*' \) -prune -o -type d -print | fzf)
-	cd "$selected_directory"
+	local cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/f_history"
+	local selected_directory
+
+	selected_directory=$(
+		{
+			if [[ -f "$cache_file" ]]; then
+				while IFS= read -r dir; do
+					[[ -d "$dir" ]] && echo "$dir"
+				done < "$cache_file"
+			fi
+			find ~/ -maxdepth 4 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/node_modules/*' -o -path '*/yazi/*' -o -path '*/rustup/*' -o -path '*/.rbenv/*' -o -path '*/.docker/*' -o -path '*/.gem/*' -o -path '*/snap/*' -o -path '*/tmp/*' \) -prune -o -type d -print
+		} | awk '!seen[$0]++' | fzf
+	)
+
+	[[ -n "$selected_directory" ]] && {
+		cd "$selected_directory"
+		mkdir -p "$(dirname "$cache_file")"
+		local tmp=$(mktemp)
+		echo "$selected_directory" > "$tmp"
+		[[ -f "$cache_file" ]] && grep -vxF "$selected_directory" "$cache_file" >> "$tmp"
+		head -n 50 "$tmp" > "$cache_file"
+		rm -f "$tmp"
+	}
 }
 
 y() {
@@ -98,13 +149,6 @@ mkcd() {
 }
 
 
-# Nvm takes up ~90% of shell loading time. Alias to a function and lazy load.
-loadnvm() {
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-}
-
-
 #not as root
 update_homelab_repo() {
   scp rojet@192.168.0.169:/opt/stacks/pihole/etc-pihole/custom.list "$HOME/dev/homelab/pihole/custom.list"
@@ -122,3 +166,70 @@ update_nginx() {
 update_pihole() {
   scp /home/rob/dev/homelab/pihole/custom.list root@192.168.0.169:/opt/stacks/pihole/etc-pihole/custom.list
 }
+
+tvivi() {
+  local base="/home/rob/dev/vivi-local-cloud"
+  local p_backend="/home/rob/dev/vivi-local-cloud/vivi-backend"
+  local p_portal="/home/rob/dev/vivi-local-cloud/vivi-portal"
+  local p_client="/home/rob/dev/vivi-client"
+
+  # 1) Prompt first
+  echo "Pick a project:"
+  select choice in "$p_backend" "$p_portal" "$p_client"; do
+    [[ -n "${choice:-}" ]] && break
+    echo "Invalid selection. Try again."
+  done
+
+  # 2) cd there, run docker compose up (wait to finish)
+  cd "$base" || { echo "Could not cd to $base"; return 1; }
+  if type dcu >/dev/null 2>&1; then
+    dcu            # run your alias in the foreground
+  else
+    # Fallback if alias isn't available in this shell
+    docker compose up -d
+  fi
+
+  # Work out order: chosen first, then the other two
+  local dirs names
+  case "$choice" in
+    "$p_backend")
+      dirs=("$p_backend" "$p_portal" "$p_client")
+      names=("vivi-backend" "vivi-portal" "vivi-client")
+      ;;
+    "$p_portal")
+      dirs=("$p_portal" "$p_backend" "$p_client")
+      names=("vivi-portal" "vivi-backend" "vivi-client")
+      ;;
+    "$p_client")
+      dirs=("$p_client" "$p_backend" "$p_portal")
+      names=("vivi-client" "vivi-backend" "vivi-portal")
+      ;;
+  esac
+
+  # 3) Create clean tmux session and windows
+  local sess="vivi"
+  tmux has-session -t "$sess" 2>/dev/null && tmux kill-session -t "$sess"
+
+  tmux new-session -d -s "$sess" -n "${names[0]}" -c "${dirs[0]}"
+  tmux new-window  -t "$sess":2 -n "${names[1]}" -c "${dirs[1]}"
+  tmux new-window  -t "$sess":3 -n "${names[2]}" -c "${dirs[2]}"
+
+  tmux select-window -t "$sess":1
+  tmux attach -t "$sess"
+}
+
+alias tv='tvivi'
+
+cb() {
+  cliphist list | fzf | cliphist decode | xclip -selection clipboard
+}
+
+gc() {
+  local branch="$1"
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git checkout "$branch"
+  else
+    git checkout -b "$branch"
+  fi
+}
+

@@ -12,6 +12,9 @@ shape = "Block"
 
 [env]
 TERM = "xterm-256color"
+# eDP-1 reports ~161 DPI, so winit scales fonts up on the laptop panel only.
+# Pin the scale factor so font size matches the HDMI monitor.
+WINIT_X11_SCALE_FACTOR = "1"
 
 [font]
 size = 12
@@ -48,10 +51,13 @@ osc52 = "CopyPaste"
 [window]
 decorations = "Full"
 startup_mode = "Maximized"
+# Alacritty padding is symmetric (left == right); no left-only option exists.
+padding = { x = 6, y = 0 }
 
 [general]
 
 live_config_reload = true
 import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
+  # Generated from the central palette by ~/.config/theme/build.sh
+  "~/.config/alacritty/colors.toml"
 ]

@@ -1,6 +1,7 @@
 return {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -42,25 +43,41 @@ return {
           filetypes = { 'json' },
         },
         pyright = {},
-        ruby_lsp = {},
+        ruby_lsp = {
+          filetypes = { 'ruby' },
+          -- cmd = { vim.fn.stdpath('data') .. '/mason/bin/ruby-lsp' },
+          init_options = {
+            enabledFeatures = {
+              'codeActions',
+              'codeLens',
+              'completion',
+              'diagnostics',
+              'documentHighlights',
+              'documentLink',
+              'documentSymbols',
+              'foldingRanges',
+              'formatting',
+              'hover',
+              'inlayHint',
+              'onTypeFormatting',
+              'selectionRanges',
+              'semanticHighlighting',
+              'signatureHelp',
+              'workspaceSymbol',
+            },
+          },
+        },
         ts_ls = {
           filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+          on_attach = function(client, bufnr)
+            -- Disable ts_ls for glimmer files (Glint handles these)
+            local ft = vim.bo[bufnr].filetype
+            if ft == 'typescript.glimmer' or ft == 'javascript.glimmer' then
+              client.stop()
+            end
+          end,
         },
-        -- If hybridMode is set to false Volar will run embedded tsserver therefore there is no need to run it separately.
-        -- Make sure you have typescript installed globally or pass the location to volar
-        -- volar = {
-        --   filetypes = { 'vue' },
-        --   init_options = {
-        --     vue = {
-        --       hybridMode = false,
-        --     },
-        --   },
-        -- },
-        --
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
           settings = {
             Lua = {
               completion = {
@@ -81,7 +98,6 @@ return {
       vim.list_extend(ensure_installed, {
         'bashls',
         'clangd',
-        'codelldb',
         'eslint-lsp',
         'gopls',
         'html',
@@ -96,6 +112,10 @@ return {
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
+            -- Skip stylua - it's a formatter, not an LSP server
+            if server_name == 'stylua' then
+              return
+            end
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
@@ -105,6 +125,16 @@ return {
           end,
         },
       }
+
+      -- Glint LSP for Ember/Glimmer (.gts/.gjs) — not Mason-managed,
+      -- requires @glint/core installed in the project
+      vim.lsp.config('glint', {
+        cmd = { 'glint-language-server' },
+        filetypes = { 'handlebars', 'typescript.glimmer', 'javascript.glimmer' },
+        root_markers = { 'ember-cli-build.js', '.glintrc.yml', '.glintrc', '.glintrc.json' },
+        capabilities = capabilities,
+      })
+      vim.lsp.enable('glint')
     end,
   },
 }

@@ -1,5 +1,6 @@
 return {
   dir = "/home/rob/dev/courier.nvim",
+  event = 'VeryLazy',
   config = function()
     require("courier").setup({
       remote = {

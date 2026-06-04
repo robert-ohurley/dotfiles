@@ -95,6 +95,20 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 -- vim.opt.clipboard = 'unnamedplus'
 
+-- Use xclip for clipboard (xsel has BadWindow issues)
+vim.g.clipboard = {
+  name = 'xclip',
+  copy = {
+    ['+'] = 'xclip -selection clipboard',
+    ['*'] = 'xclip -selection primary',
+  },
+  paste = {
+    ['+'] = 'xclip -selection clipboard -o',
+    ['*'] = 'xclip -selection primary -o',
+  },
+  cache_enabled = 0,
+}
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -134,3 +148,14 @@ vim.opt.scrolloff = 5
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+vim.opt.grepprg = 'rg --vimgrep' -- use ripgrep for :grep (used by <leader>rwg)
+vim.opt.grepformat = '%f:%l:%c:%m' -- parse rg output into quickfix (used by <leader>rwg)
+
+-- Ember/Glimmer filetype detection
+vim.filetype.add {
+  extension = {
+    gts = 'typescript.glimmer',
+    gjs = 'javascript.glimmer',
+  },
+}
