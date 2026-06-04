@@ -12,6 +12,9 @@ shape = "Block"
 
 [env]
 TERM = "xterm-256color"
+# eDP-1 reports ~161 DPI, so winit scales fonts up on the laptop panel only.
+# Pin the scale factor so font size matches the HDMI monitor.
+WINIT_X11_SCALE_FACTOR = "1"
 
 [font]
 size = 12

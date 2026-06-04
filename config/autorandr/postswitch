@@ -17,8 +17,9 @@ command -v jq     >/dev/null || exit 0
 
 INT="eDP-1"
 EXT="$INT"
-if   xrandr | grep -qE "^HDMI-1 connected [0-9]"; then EXT="HDMI-1"
-elif xrandr | grep -qE "^DP-1 connected [0-9]";   then EXT="DP-1"
+# NB: "connected" may be followed by "primary" before the geometry.
+if   xrandr | grep -qE "^HDMI-1 connected (primary )?[0-9]"; then EXT="HDMI-1"
+elif xrandr | grep -qE "^DP-1 connected (primary )?[0-9]";   then EXT="DP-1"
 fi
 
 # Remember focus so re-pinning doesn't yank the user to another workspace.
@@ -34,6 +35,12 @@ i3-msg -t get_workspaces | jq -r '.[].num' | while read -r n; do
 done
 
 [ -n "$focused" ] && i3-msg "workspace number $focused" >/dev/null
+
+# Re-map the touchscreen to the laptop panel. Its coordinate matrix is
+# relative to the whole virtual desktop, so it goes stale whenever the
+# layout changes and touches land offset from the finger.
+command -v xinput >/dev/null && \
+  xinput map-to-output "ELAN900C:00 04F3:2F59" "$INT" 2>/dev/null || true
 
 # Reapply wallpaper: a layout change resizes the root window and feh's old
 # pixmap gets tiled across it otherwise.
