@@ -19,3 +19,4 @@ fi
 # Enable reverse-search in tmux
 bindkey '^R' history-incremental-search-backward
 
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"

@@ -53,28 +53,17 @@ source $HOME/.config/zsh/custom/android.zsh
 
 
 
-export PYENV_ROOT="$HOME"/.pyenv
-export PATH="$PYENV_ROOT"/bin:"$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+eval "$(~/.local/bin/mise activate zsh)"
 
 # Shell integrations
 eval "$(starship init zsh)"
-
-# pnpm
-export PNPM_HOME="/home/rob/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 export PATH=$PATH:$HOME/.maestro/bin
 
 export VIVI_ENABLE_SECRET_SETTINGS=true
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+pgrep -f "xclip -selection clipboard -o" >/dev/null || (
+  while true; do
+    xclip -selection clipboard -o 2>/dev/null | cliphist store 2>/dev/null
+    sleep 0.5
+  done >/dev/null 2>&1 &
+)

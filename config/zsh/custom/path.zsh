@@ -8,17 +8,19 @@ export XDG_STATE_HOME=$HOME/.local/state
 #Other variables
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_USER_HOME=$XDG_DATA_HOME/android
-export ANDROID_SDK_ROOT=$HOME/Android
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+# export ANDROID_SDK_ROOT=$HOME/Android
+export ANDROID_AVD_HOME=$XDG_DATA_HOME/android/avd
 export AWS_SHARED_CREDENTIALS_FILE=$XDG_CONFIG_HOME/aws/credentials
 export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export DOTNET_CLI_HOME=$XDG_DATA_HOME/dotnet
-export GNUPGHOME=$XDG_DATA_HOME/gnupg     	#might cause problems
 export GOPATH="$XDG_DATA_HOME"/go
 export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export JAVA_HOME="$HOME/.sdkman/candidates/java/25.0.1-tem"
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
 
 export HISTFILE=$XDG_STATE_HOME/zsh/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history

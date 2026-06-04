@@ -46,6 +46,36 @@ mkpr() {
     --web
 }
 
+# raisepr [head] [into] <base>
+#   raisepr main                  # current branch -> main
+#   raisepr feature-x main
+#   raisepr feature-x into main
+raisepr() {
+  if [[ $# -lt 1 ]]; then
+    echo "usage: raisepr [head] [into] <base>" >&2
+    return 1
+  fi
+
+  local head base
+  if [[ $# -eq 1 ]]; then
+    head="$(git branch --show-current)"
+    base="$1"
+  elif [[ $# -ge 3 && "$2" == "into" ]]; then
+    head="$1"
+    base="$3"
+  else
+    head="$1"
+    base="$2"
+  fi
+
+  GH_EDITOR=true GH_PROMPT_DISABLED=1 gh pr create \
+    --base "$base" \
+    --head "$head" \
+    --title "Merge $head into $base" \
+    --body "" \
+    --web
+}
+
 addPath() {
 	echo "export PATH=$1:\$PATH\n" >> $ZSH/custom/path.zsh
 }
@@ -66,8 +96,29 @@ t() {
 
 # Simple navigation
 f() {
-	selected_directory=$(find ~/ -maxdepth 4 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/node_modules/*' -o -path '*/yazi/*' -o -path '*/rustup/*' -o -path '*/.rbenv/*' -o -path '*/.docker/*' -o -path '*/.gem/*' -o -path '*/snap/*' -o -path '*/tmp/*' \) -prune -o -type d -print | fzf)
-	cd "$selected_directory"
+	local cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/f_history"
+	local selected_directory
+
+	selected_directory=$(
+		{
+			if [[ -f "$cache_file" ]]; then
+				while IFS= read -r dir; do
+					[[ -d "$dir" ]] && echo "$dir"
+				done < "$cache_file"
+			fi
+			find ~/ -maxdepth 4 \( -path '*/.local/*' -o -path '*/.cache/*' -o -path '*/node_modules/*' -o -path '*/yazi/*' -o -path '*/rustup/*' -o -path '*/.rbenv/*' -o -path '*/.docker/*' -o -path '*/.gem/*' -o -path '*/snap/*' -o -path '*/tmp/*' \) -prune -o -type d -print
+		} | awk '!seen[$0]++' | fzf
+	)
+
+	[[ -n "$selected_directory" ]] && {
+		cd "$selected_directory"
+		mkdir -p "$(dirname "$cache_file")"
+		local tmp=$(mktemp)
+		echo "$selected_directory" > "$tmp"
+		[[ -f "$cache_file" ]] && grep -vxF "$selected_directory" "$cache_file" >> "$tmp"
+		head -n 50 "$tmp" > "$cache_file"
+		rm -f "$tmp"
+	}
 }
 
 y() {
@@ -95,13 +146,6 @@ killport() {
 mkcd() {
 	mkdir $1
 	cd $1
-}
-
-
-# Nvm takes up ~90% of shell loading time. Alias to a function and lazy load.
-loadnvm() {
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
 
@@ -175,4 +219,17 @@ tvivi() {
 }
 
 alias tv='tvivi'
+
+cb() {
+  cliphist list | fzf | cliphist decode | xclip -selection clipboard
+}
+
+gc() {
+  local branch="$1"
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git checkout "$branch"
+  else
+    git checkout -b "$branch"
+  fi
+}
 
