@@ -14,8 +14,9 @@ include ~/.config/i3/colors.conf
 
 # === Appearance ===
 font pango:JetBrainsMono Nerd Font Mono 10
-gaps inner 8
-gaps outer 0
+# Gaps need i3 >= 4.22 (Ubuntu 22.04 ships 4.20.1). Re-enable after upgrading i3.
+# gaps inner 8
+# gaps outer 0
 
 # === Volume up / down / mute (PipeWire) ===
 bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+

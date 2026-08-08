@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(i3 -C -c /home/rojetsavage/.config/i3/config)",
+      "Bash(i3 --version)",
+      "Read(//usr/share/xsessions/**)",
+      "Bash(awk '{print $1}')",
+      "Bash(xargs -r kill)",
+      "Bash(killall -q polybar)",
+      "Bash(export DISPLAY=:0)",
+      "Bash(xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --output HDMI-1-1 --mode 2560x1440 --rate 59.95 --pos 1920x0)",
+      "Bash(echo \"=== exit $? ===\")",
+      "Bash(sleep 2)",
+      "Bash(xrandr --query)"
+    ]
+  }
+}
